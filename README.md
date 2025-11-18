@@ -6,4 +6,4 @@ Please cite: Liao, Yuan, et al. "Global Mapping of Combinatorial Chromatin Regul
 
 Schematic workflow
 ---
-![Hi-Plex CUT and Tag Technology](./preprocess/hiplex_protocol.png)
+![Hi-Plex CUT and Tag Technology](./preprocess/Fig1A_work_flow.jpeg)
