@@ -1,0 +1,6 @@
+ref_genome: "hg38"
+rawData_dir: "./hiplex/" 
+barcode_file: "./barcode-36x.csv"
+process_dir: "./processed_data"
+log_dir: "./log"
+samples: ["NaB_36x_CT_T1_S1", "NaB_36x_CT_T2_S2", "NaB_36x_CT_V1_S3", "NaB_36x_CT_V2_S4"]

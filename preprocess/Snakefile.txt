@@ -1,0 +1,514 @@
+import os
+import fnmatch
+import itertools
+import pandas as pd
+
+########################################################
+# to-do: conda, singularity
+# https://snakemake.readthedocs.io/en/v5.7.3/snakefiles/deployment.html
+########################################################
+
+########################################################
+# global varibales
+# modify
+########################################################
+# process_dir = "/dcl02/hongkai/data/kyu/multitag_scripts/scripts_snakemake/processed_data"
+process_dir = config["process_dir"]
+log_dir = config["log_dir"]
+process_bam_dir = process_dir + "/bam/"
+process_data_dir = process_dir + "/data/"
+process_util_dir = process_dir + "/utilities/"
+
+# print(config)
+# rawData_dir = "/dcl02/hongkai/data/wzhou14/Zhu_lab/bulk_data_K562_treated/"
+rawData_dir = config["rawData_dir"]
+# print(rawData_dir)
+fastq_ext = '.fastq.gz'
+# barcode_file = "/dcl02/hongkai/data/wzhou14/Zhu_lab/code_bulk/Ab barcodes_K562.xlsx"
+barcode_file = config["barcode_file"]
+barcode_file_ext = barcode_file.split(".")[-1]
+if barcode_file_ext == "xlsx":
+    xls = pd.ExcelFile(barcode_file)
+    df = pd.read_excel(xls, '37x 11nt')
+elif barcode_file_ext == "csv":
+    df = pd.read_csv(barcode_file)
+targets_unprocessed = df["target"].str.strip().to_list()
+targets = []
+for target in targets_unprocessed:
+    target_processed = target.replace(" ", "_")
+    target_processed = target_processed.replace("/", "_")
+    target_processed = target_processed.replace("-", "")
+    target_processed = target_processed.replace(" ", "_")
+    target_processed = target_processed.replace(".", "_")
+    targets.append(target_processed)
+targets.append("unknown")
+# targets = ["H3K36me3", "H3K4me1", "H3K27ac", "H3S10ph", "H2A_XS139ph", "H3K79me3", "H3K9me2",
+#           "H3K9me3", "H3K14ac", "H3K27me3", "H3K4me3", "SETD2", "MLL4_MLL2_KMT2B", "CBP_CREBBP",
+#           "EP300", "MSK1", "MSK2", "PIM1", "CDK8", "AURORA_Aurora_B", "EHMT2", "SuVar39_SUV39H1",
+#            "EHMT1", "EZH2", "MLL1_KMT2A", "CTCF", "POLR2AphosphoS2", "cJun", "cFos", "Max", "Myc",
+#             "USF1", "USF2", "NRF1", "YY1", "H3K9ac", "IgG_control", "unknown"]
+
+ref_genome = config["ref_genome"]
+
+bowtie2_index_base_url = "https://genome-idx.s3.amazonaws.com/bt/"
+if ref_genome == "hg38":
+    bowtie2_index_filename = "GRCh38_noalt_as"
+    bowtie2_index_url = "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip"
+    chrom_size_url = "https://raw.githubusercontent.com/ENCODE-DCC/encValData/master/GRCh38/GRCh38_EBV.chrom.sizes"
+    bowtie2_index_dir = process_dir + "/utilities/"
+elif ref_genome == "mm10":
+    bowtie2_index_filename = "mm10"
+    bowtie2_index_url = "https://genome-idx.s3.amazonaws.com/bt/mm10.zip"
+    chrom_size_url = "https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.chrom.sizes"
+    bowtie2_index_dir = process_dir + "/utilities/mm10"
+else:
+    pass
+ext = ".fastq.gz"
+
+if not os.path.exists(process_data_dir):
+    os.makedirs(process_data_dir)
+    # print("dir made")
+if not os.path.exists(process_bam_dir):
+    os.makedirs(process_bam_dir)
+
+if not os.path.exists(process_bam_dir):
+    os.makedirs(process_bam_dir)
+
+
+rawData = os.listdir(rawData_dir)
+list_fastq={}
+samples = []
+
+R1_suffix = "_R1_001"
+R2_suffix = "_R2_001"
+
+
+if not any(R1_suffix in s for s in rawData):
+    R1_suffix = "_1"
+    R2_suffix = "_2"   
+
+for rawFastq in rawData:
+    if fnmatch.fnmatch(rawFastq, "*" + R1_suffix + "." +  fastq_ext):
+        # print(rawFastq)
+        # sample = rawFastq[: -len("R1_001" +  fastq_ext)-1]
+        sample = rawFastq[: -len(R1_suffix +  fastq_ext)-1]
+        samples.append(sample)
+
+if len(config["samples"]) > 0:
+    samples = config["samples"]
+
+for sample in samples:
+    list_fastq[sample] = (sample + R1_suffix +  fastq_ext, sample + R2_suffix +  fastq_ext)
+
+# print(config["samples"])
+
+   
+sample_targets = list(itertools.product(samples, targets, targets))
+dir_demux_fastq = process_dir + '/demultiplex'
+
+result1 = [dir_demux_fastq + "/" + sample_target[0] + "/" + sample_target[1] + "-" + sample_target[2] + ".R1" + ext for sample_target in sample_targets]
+
+result2 = [dir_demux_fastq + "/" + sample_target[0] + "/" + sample_target[1] + "-" + sample_target[2] + ".R2" + ext for sample_target in sample_targets]
+
+result = result1 + result2
+
+combs = list(itertools.product(targets, ["-"], targets))
+combs = [comb[0] + comb[1] + comb[2] for comb in combs]
+
+unique_combs = []
+for target1 in targets:
+    for target2 in targets:
+        if target1 <= target2:
+            # print(f"{target1}-{target2}")
+            unique_combs.append(f"{target1}-{target2}")
+# print(unique_combs)
+# print(samples)
+# print(combs)
+# scripts
+if barcode_file_ext == "xlsx":
+    create_barcode_file_dir = "/dcl02/hongkai/data/kyu/multitag_scripts/scripts_snakemake/module/create_barcode_file_xlsx.R"
+elif barcode_file_ext == "csv":
+    create_barcode_file_dir = "/projects/foundation_model_for_single_cell_multiomics_data/hiplex/script/pipeline/steps/create_barcode_file_csv.R"
+
+# print(sample_targets)
+# index="/dcs04/hongkai/data/wzhou14/tools/bowtie2_index/GRCh38_noalt_as"
+
+########################################################
+# Rules
+########################################################
+
+rule all:
+    input:
+        expand(process_dir + "/bam/{samples}/{unique_combs}.bam", samples = samples, unique_combs = unique_combs),
+        # expand("/dcl02/hongkai/data/kyu/multitag_scripts/scripts_snakemake/processed_data/bed/{samples}/{combs}.bed", samples = samples, combs = combs)
+        expand(process_dir + "/peak/SEACR_0.05/{samples}/{unique_combs}.stringent.bed", samples = samples, unique_combs = unique_combs),
+        expand(process_dir + "/{bigwigs}/{samples}/{unique_combs}.bw", bigwigs = ["bigwig_RPM", "bigwig"], samples = samples, unique_combs = unique_combs),
+        expand(process_dir + "/quality_control/read_stat_counts_{samples}.csv", samples = samples),
+        expand(process_dir + "/quality_control/read_stat_total_{samples}.csv", samples = samples),
+        expand(process_dir + '/quality_control/read_mat_{samples}.pdf', samples = samples),
+        expand(process_dir + '/quality_control/read_mat_log10_{samples}.pdf', samples = samples),
+        expand(process_dir + '/quality_control/read_stat_mat_{samples}.csv', samples = samples),
+        expand(process_dir + "/quality_control/mapping_rate_pe_{samples}.csv", samples = samples),
+        expand(process_dir + "/quality_control/sequence_read_mat_{samples}.csv", samples = samples),
+        expand(process_dir + "/quality_control/unique_read_mat_{samples}.csv", samples = samples),
+        expand(process_dir + "/quality_control/duplication_rate_mat_{samples}.csv", samples = samples),
+        expand(process_dir + "/quality_control/sequence_read_mat_{samples}.pdf", samples = samples),
+        expand(process_dir + "/quality_control/sequence_read_mat_log10_{samples}.pdf", samples = samples),
+        expand(process_dir + "/quality_control/unique_read_mat_{samples}.pdf", samples = samples),
+        expand(process_dir + "/quality_control/unique_read_mat_log10_{samples}.pdf", samples = samples),
+        expand(process_dir + "/quality_control/alignment_rate_mat_{samples}.pdf", samples = samples),
+        expand(process_dir + "/quality_control/duplication_rate_mat_{samples}.pdf", samples = samples),
+        expand(process_dir + "/merged_fastq/{samples}/{unique_combs}{file_ext}", samples = samples, process_dir=[process_dir], unique_combs=unique_combs, file_ext=[".R1" + ext, ".R2" + ext])
+
+rule seacr_peak:
+    input:
+        bedgraph = process_dir + "/bedgraph/{samples}/{unique_combs}.bedGraph",
+    output:
+        process_dir + "/peak/SEACR_0.05/{samples}/{unique_combs}.stringent.bed" 
+    log: 
+        stdout=log_dir+"/peak/SEACR_0.05/{samples}_{unique_combs}.stdout", stderr=log_dir+"/peak/SEACR_0.05/{samples}_{unique_combs}.stderr"
+    resources:
+        mem_mb=50000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    shell:
+        """
+        (
+            bash /projects/foundation_model_for_single_cell_multiomics_data/hiplex/script/pipeline/steps/SEACR_1.3.sh {input.bedgraph} 0.05 non stringent {process_dir}/peak/SEACR_0.05/{wildcards.samples}/{wildcards.unique_combs}  || true
+            if [ ! -f {process_dir}/peak/SEACR_0.05/{wildcards.samples}/{wildcards.unique_combs}.stringent.bed ]; then
+                echo "File not found!"
+                touch {process_dir}/peak/SEACR_0.05/{wildcards.samples}/{wildcards.unique_combs}.stringent.bed
+            fi
+        ) > {log.stdout} 2> {log.stderr}
+        """
+
+rule bigwig_normalized:
+    input:
+        bedgraph = process_dir + "/bedgraph_RPM/{samples}/{unique_combs}.bedGraph",
+        chrom_sizes = process_dir + "/utilities/" + ref_genome + ".chrom.sizes" 
+    output:
+        process_dir + "/bigwig_RPM/{samples}/{unique_combs}.bw"  
+    log: 
+        stdout=log_dir+"/bigwig_RPM/{samples}_{unique_combs}.stdout", stderr=log_dir+"/bigwig_RPM/{samples}_{unique_combs}.stderr"
+    resources:
+        mem_mb=50000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    shell:
+        """
+        (
+            if [ -s "{process_dir}/bedgraph_RPM/{wildcards.samples}/{wildcards.unique_combs}.bedGraph" ]; then
+                set +u
+                mkdir -p "{process_dir}/bigwig_RPM/{wildcards.samples}"
+                /projects/foundation_model_for_single_cell_multiomics_data/hiplex/script/pipeline/steps/bedGraphToBigWig {process_dir}/bedgraph_RPM/{wildcards.samples}/{wildcards.unique_combs}.bedGraph {input.chrom_sizes} {process_dir}/bigwig_RPM/{wildcards.samples}/{wildcards.unique_combs}.bw 
+            else
+                touch {process_dir}/bigwig_RPM/{wildcards.samples}/{wildcards.unique_combs}.bw 
+            fi
+        ) > {log.stdout} 2> {log.stderr}
+        """  
+
+rule bedgraph_normalized:
+    input:
+        bed = process_dir + "/bed/{samples}/{unique_combs}.sorted.bed",
+        chrom_sizes = process_dir + "/utilities/" + ref_genome + ".chrom.sizes"
+    output:
+        process_dir + "/bedgraph_RPM/{samples}/{unique_combs}.bedGraph" 
+    log:
+        stdout=log_dir+"/bedgraph_RPM/{samples}_{unique_combs}.stdout", stderr=log_dir+"/bedgraph_RPM/{samples}_{unique_combs}.stderr"
+    resources:
+        mem_mb=50000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    envmodules:
+        "bedtools/2.31.0"
+    shell:
+        """
+        (
+            module load bedtools/2.31.0
+            mkdir -p "{process_dir}/bedgraph_RPM/{wildcards.samples}"
+            total_count=`wc -l < {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.sorted.bed`
+            if [ "$total_count" -gt 0 ]; then
+                scale_factor=$(echo "scale=4;1000000/$total_count" | bc)
+                bedtools genomecov -bg -scale $scale_factor -i {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.sorted.bed  -g {input.chrom_sizes} > {process_dir}/bedgraph_RPM/{wildcards.samples}/{wildcards.unique_combs}.bedGraph 
+            else
+                touch {process_dir}/bedgraph_RPM/{wildcards.samples}/{wildcards.unique_combs}.bedGraph 
+            fi
+        ) > {log.stdout} 2> {log.stderr}
+        """
+
+
+rule bigwig:
+    input:
+        bedgraph = process_dir + "/bedgraph/{samples}/{unique_combs}.bedGraph",
+        chrom_sizes = process_dir + "/utilities/" + ref_genome + ".chrom.sizes" 
+    output:
+        process_dir + "/bigwig/{samples}/{unique_combs}.bw"  
+    log: 
+        stdout=log_dir+"/bigwig/{samples}_{unique_combs}.stdout", stderr=log_dir+"/bigwig/{samples}_{unique_combs}.stderr"
+    resources:
+        mem_mb=50000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    shell:
+        """
+        (
+            if [ -s "{process_dir}/bedgraph/{wildcards.samples}/{wildcards.unique_combs}.bedGraph" ]; then
+                set +u
+                mkdir -p "{process_dir}/bigwig/{wildcards.samples}"
+                /projects/foundation_model_for_single_cell_multiomics_data/hiplex/script/pipeline/steps/bedGraphToBigWig {process_dir}/bedgraph/{wildcards.samples}/{wildcards.unique_combs}.bedGraph {input.chrom_sizes} {process_dir}/bigwig/{wildcards.samples}/{wildcards.unique_combs}.bw
+            else
+                touch {process_dir}/bigwig/{wildcards.samples}/{wildcards.unique_combs}.bw
+            fi
+        ) > {log.stdout} 2> {log.stderr}
+        """  
+
+rule bedgraph:
+    input:
+        bed = process_dir + "/bed/{samples}/{unique_combs}.sorted.bed",
+        chrom_sizes = process_dir + "/utilities/" + ref_genome + ".chrom.sizes"
+    output:
+        # Delete after finishing all tasks requiring bed file
+        process_dir + "/bedgraph/{samples}/{unique_combs}.bedGraph"  
+    log: 
+        stdout=log_dir+"/bedgraph/{samples}_{unique_combs}.stdout", stderr=log_dir+"/bedgraph/{samples}_{unique_combs}.stderr"
+    resources:
+        mem_mb=50000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    envmodules:
+        "bedtools/2.31.0"
+    shell:
+        """
+        (
+            module load bedtools/2.31.0
+            mkdir -p "{process_dir}/bedgraph/{wildcards.samples}"
+            bedtools genomecov -bg -i {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.sorted.bed -g {input.chrom_sizes} > {process_dir}/bedgraph/{wildcards.samples}/{wildcards.unique_combs}.bedGraph 
+        ) > {log.stdout} 2> {log.stderr}
+        """
+
+
+
+rule get_chrom_size:
+    output:
+        process_dir + "/utilities/" + ref_genome + ".chrom.sizes"
+    log: 
+        stdout=log_dir+"/getChromSize/" + ref_genome + ".stdout", stderr=log_dir+"/getChromSize/" + ref_genome + ".stderr"
+    resources:
+        mem_mb=10000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    shell:
+        """
+        wget {chrom_size_url} -O "{process_dir}/utilities/{ref_genome}.chrom.sizes"  > {log.stdout} 2> {log.stderr}
+        """
+    
+
+rule bed:
+    input:
+        alignment = process_dir + "/bam/{samples}/{unique_combs}.bam"
+    output:
+        # Delete after finishing all tasks requiring bed file
+        temp(process_dir + "/bed/{samples}/{unique_combs}.sorted.bed")
+    log: 
+        stdout=log_dir+"/bed/{samples}_{unique_combs}.stdout", stderr=log_dir+"/bed/{samples}_{unique_combs}.stderr"
+    resources:
+        mem_mb=30000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    envmodules:
+        "samtools",
+        "bedtools"
+    shell:
+        """
+        (
+            module load samtools/1.19.2
+            module load bedtools/2.31.0
+            mkdir -p "{process_dir}/bed/{wildcards.samples}/"
+            samtools sort -n {input.alignment} -o {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.sort.bam
+            bedtools bamtobed -i {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.sort.bam -bedpe > {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.bedpe
+            awk -v OFS='\t' '{{print $1,$2,$6}}' {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.bedpe > {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.bed
+            sort -k 1,1 -k2,2n {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.bed > {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.sorted.bed 
+            rm {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.sort.bam
+            rm {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.bedpe
+            rm {process_dir}/bed/{wildcards.samples}/{wildcards.unique_combs}.bed
+        ) > {log.stdout} 2> {log.stderr}
+        """
+
+rule get_mapping_rate:
+    input:
+        expand("{log_dir}/alignment/{{samples}}_{unique_combs}.stderr", unique_combs=unique_combs, log_dir=[log_dir])
+        # expand("{log_dir}/alignment/{{samples}}_{combs}.stderr", combs=combs)
+    output:
+        process_dir + "/quality_control/mapping_rate_pe_{samples}.csv",
+        process_dir + "/quality_control/sequence_read_mat_{samples}.csv",
+        process_dir + "/quality_control/unique_read_mat_{samples}.csv",
+        process_dir + "/quality_control/duplication_rate_mat_{samples}.csv",
+        process_dir + "/quality_control/sequence_read_mat_{samples}.pdf",
+        process_dir + "/quality_control/sequence_read_mat_log10_{samples}.pdf",
+        process_dir + "/quality_control/unique_read_mat_{samples}.pdf",
+        process_dir + "/quality_control/unique_read_mat_log10_{samples}.pdf",
+        process_dir + "/quality_control/alignment_rate_mat_{samples}.pdf",
+        process_dir + "/quality_control/duplication_rate_mat_{samples}.pdf"
+    log: 
+        stdout=log_dir+"/get_mapping_rate/{samples}.stdout", stderr=log_dir+"/get_mapping_rate/{samples}.stderr"
+    resources:
+        mem_mb=30000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    shell:
+        """
+        (
+            cat {input} > {log_dir}/alignment/{wildcards.samples}.stderr
+            Rscript /projects/foundation_model_for_single_cell_multiomics_data/hiplex/script/pipeline/steps/get_mapping_rate.R {log_dir}/alignment/{wildcards.samples}.stderr {process_dir}/quality_control/ {wildcards.samples}
+        ) > {log.stdout} 2> {log.stderr}
+        """
+
+
+rule alignment:
+    input:
+        R1_fastq = process_dir + "/merged_fastq/{samples}/{unique_combs}.R1" + ext,
+        R2_fastq = process_dir + "/merged_fastq/{samples}/{unique_combs}.R2" + ext,
+        index = process_dir + "/utilities/" + bowtie2_index_filename 
+    output:
+        process_dir + "/bam/{samples}/{unique_combs}.bam"
+    log: 
+        stdout=log_dir+"/alignment/{samples}_{unique_combs}.stdout", stderr=log_dir+"/alignment/{samples}_{unique_combs}.stderr"
+    resources:
+        mem_mb=80000,
+        cpus_per_task=16,
+        tasks=1,
+        runtime=8640
+    shell:
+        """
+        mkdir -p {process_dir}/bam/{wildcards.samples}/ 
+        bash /projects/foundation_model_for_single_cell_multiomics_data/hiplex/script/pipeline/steps/step3_align.sh {input.R1_fastq} {input.R2_fastq} {process_dir}/bam/{wildcards.samples}/{wildcards.unique_combs} {input.index}/{bowtie2_index_filename} > {log.stdout} 2> {log.stderr}
+        """
+
+rule get_bowtie_index:
+    output:
+        directory(process_dir + "/utilities/" + bowtie2_index_filename)
+    log: 
+        stdout=log_dir+"/get_bowtie_index/" + bowtie2_index_filename + ".stdout", stderr=log_dir+"/get_bowtie_index/" + bowtie2_index_filename + ".stderr"
+    resources:
+        mem_mb=3000,
+        cpus_per_task=16,
+        tasks=1,
+        runtime=8640
+    shell:
+        """
+        wget {bowtie2_index_base_url}{bowtie2_index_filename}.zip -O {process_dir}/utilities/{bowtie2_index_filename}.zip
+        mkdir -p {bowtie2_index_dir}
+        unzip {process_dir}/utilities/{bowtie2_index_filename}.zip -d {bowtie2_index_dir}/ > {log.stdout} 2> {log.stderr}
+        """
+
+rule merge_reverse_tag_pair_fastq:
+    input:
+        expand("{process_dir}/demultiplex/{{samples}}/{combs}{file_ext}", process_dir=[process_dir], combs=combs, file_ext=[".R1" + ext, ".R2" + ext])
+    output:
+        expand("{process_dir}/merged_fastq/{{samples}}/{unique_combs}{file_ext}", process_dir=[process_dir], unique_combs=unique_combs, file_ext=[".R1" + ext, ".R2" + ext])
+    log: 
+        stdout=log_dir+"/merged_fastq/{samples}.stdout", stderr=log_dir+"/merged_fastq/{samples}.stderr"
+    resources:
+        mem_mb=30000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    run:
+        for comb in unique_combs:
+            target1 = comb.split("-")[0]
+            target2 = comb.split("-")[1]
+            order1_prefix = f"{target1}-{target2}"
+            order2_prefix = f"{target2}-{target1}"
+            order1_R1_file = f"{process_dir}/demultiplex/{wildcards.samples}/{order1_prefix}.R1.fastq.gz"
+            order2_R1_file = f"{process_dir}/demultiplex/{wildcards.samples}/{order2_prefix}.R1.fastq.gz"
+            out_R1_file = f"{process_dir}/merged_fastq/{wildcards.samples}/{order1_prefix}.R1.fastq.gz"
+            order1_R2_file = f"{process_dir}/demultiplex/{wildcards.samples}/{order1_prefix}.R2.fastq.gz"
+            order2_R2_file = f"{process_dir}/demultiplex/{wildcards.samples}/{order2_prefix}.R2.fastq.gz"
+            out_R2_file = f"{process_dir}/merged_fastq/{wildcards.samples}/{order1_prefix}.R2.fastq.gz"
+            if target1 == target2:
+                shell(f"cp {order1_R1_file} {out_R1_file}")            
+                shell(f"cp {order1_R2_file} {out_R2_file}")
+            else:
+                shell(f"cat {order1_R1_file} {order2_R1_file} > {out_R1_file}")            
+                shell(f"cat {order1_R2_file} {order2_R2_file} > {out_R2_file}")
+
+
+rule get_read_num:
+    input:
+        expand("{process_dir}/demultiplex/{{samples}}/{combs}{file_ext}", process_dir=[process_dir], combs=combs, file_ext=[".R1" + ext, ".R2" + ext])
+    output:
+        process_dir + "/quality_control/read_stat_counts_{samples}.csv",
+        process_dir + "/quality_control/read_stat_total_{samples}.csv",
+        process_dir + '/quality_control/read_mat_{samples}.pdf',
+        process_dir + "/quality_control/read_mat_log10_{samples}.pdf",
+        process_dir + '/quality_control/read_stat_mat_{samples}.csv'
+    resources:
+        mem_mb=30000,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=8640
+    log: 
+        stdout=log_dir+"/get_read_num/{samples}.stdout", stderr=log_dir+"/get_read_num/{samples}.stderr"
+    shell:
+        """
+        (
+            for f in $(find {input} -name "*.gz"); do echo "$f,$(zcat $f| wc -l)" >> {process_dir}/quality_control/read_stat_{wildcards.samples}.csv; done
+            Rscript /projects/foundation_model_for_single_cell_multiomics_data/hiplex/script/pipeline/steps/get_read_num.R {process_dir}/quality_control/read_stat_{wildcards.samples}.csv {process_dir}/quality_control/ {wildcards.samples}
+        ) > {log.stdout} 2> {log.stderr}
+        """
+
+rule demultiplex_fastq:
+    input:
+        barcode_fwd_fasta = process_dir+'/data/Next_CUT_Tag_barcode_fwd_next.fasta',
+        barcode_rev_fasta = process_dir+'/data/Next_CUT_Tag_barcode_rev_next.fasta',
+        R1_fastq = rawData_dir + '{samples}' + R1_suffix + '.fastq.gz',
+        R2_fastq = rawData_dir + '{samples}' + R2_suffix + '.fastq.gz'
+        
+    output:
+        expand("{process_dir}/demultiplex/{{samples}}/{combs}{file_ext}", process_dir=[process_dir], combs=combs, file_ext=[".R1" + ext, ".R2" + ext])
+        # print(expand("/dcl02/hongkai/data/kyu/multitag_scripts/scripts_snakemake/processed_data/demultiplex/{{samples}}/{comb}{file_ext}", comb=combs, file_ext=[".R1" + ext, ".R2" + ext]))
+    log: 
+        stdout=log_dir+"/demultiplex_fastq_{samples}.stdout", stderr=log_dir+"/demultiplex_fastq_{samples}.stderr"
+    resources:
+        mem_mb=100000,
+        cpus_per_task=8,
+        tasks=1,
+        runtime=8640
+    shell:
+        """
+        bash /projects/foundation_model_for_single_cell_multiomics_data/hiplex/script/pipeline/steps/step2_demultiplex_fastq.sh {input.barcode_fwd_fasta} {input.barcode_rev_fasta} {input.R1_fastq} {input.R2_fastq} {dir_demux_fastq}/{wildcards.samples} > {log.stdout} 2> {log.stderr}
+        """
+    
+rule create_barcode_fastq:
+    input:
+        {barcode_file}
+    output:
+        process_dir+'/data/Next_CUT_Tag_barcode_fwd_next.fasta',
+        process_dir+'/data/Next_CUT_Tag_barcode_rev_next.fasta'
+    log: 
+        stdout=log_dir+"/create_barcode.stdout", stderr=log_dir+"/create_barcode.stderr"
+    envmodules:
+        "conda_R/4.3.x"
+    resources:
+        mem_mb_per_cpu=4096,
+        cpus_per_task=1,
+        tasks=1,
+        runtime=180
+    shell:
+        """
+        Rscript {create_barcode_file_dir} "{barcode_file}" {process_dir}/data/ > {log.stdout} 2> {log.stderr}
+        """
+
+
+
+
+
+        
