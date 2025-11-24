@@ -1,11 +1,14 @@
-source("/dcl02/hongkai/data/kyu/multitag_scripts/scripts_peakAnnotation/ccre_annotation/CCREUtils.R")
+source("/dcs05/hongkai/data/next_cutntag/script/peak_annotation/scripts_for_manuscript_v2/CCREUtils.R")
 library(glue)
 
 args <- commandArgs(trailingOnly = TRUE)
-peakType <- args[1]
-print(peakType)
-peakDir <- glue("/dcs05/hongkai/data/next_cutntag/bulk/homotone_heterotone_merged/peak/{peakType}/")
-
+# peakType <- args[1]
+# print(peakType)
+# peakDir <- glue("/dcs05/hongkai/data/next_cutntag/bulk/homotone_heterotone_merged/peak/{peakType}/")
+peakDir <- args[1]
+outDir <- args[2]
+print(peakDir)
+print(outDir)
 scens <- c("V")
 
 
@@ -57,14 +60,11 @@ for (scen in scens) {
         peakAnnos[[tag]] <- peakAnno
     }
   }
-  dir.create(paste0("/dcl02/hongkai/data/kyu/multitag_scripts/data_peakAnnotate/ChIPSeeker_CCRE/", peakType, "/", scen), recursive = TRUE)
-  RDSFile <- paste0("/dcl02/hongkai/data/kyu/multitag_scripts/data_peakAnnotate/ChIPSeeker_CCRE/", peakType, "/", scen, "/annotate.rds")
+  # dir.create(paste0("/dcl02/hongkai/data/kyu/multitag_scripts/data_peakAnnotate/ChIPSeeker_CCRE/", peakType, "/", scen), recursive = TRUE)
+  # RDSFile <- paste0("/dcl02/hongkai/data/kyu/multitag_scripts/data_peakAnnotate/ChIPSeeker_CCRE/", peakType, "/", scen, "/annotate.rds")
+  dir.create(outDir, recursive = TRUE)
+  RDSFile <- glue("{outDir}/annotate.rds")
   saveRDS(peakAnnos, RDSFile)
-  # peakAnnos <- readRDS(RDSFile)
-  anno <- lapply(peakAnnos, getAnnoStatCCRE)
-  anno.df <- list_to_dataframe(anno)
-  anno.df$Feature <- factor(anno.df$Feature, levels = c(ChIPSeekerCCRECategoriesOrder))
-  categoryColumn <- ".id"
 }
 
 
