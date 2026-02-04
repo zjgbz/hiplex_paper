@@ -10,17 +10,17 @@ Schematic workflow
 
 ## Repository structure
 
-preprocess/  Processing raw sequencing files to bam files, bigwig files (for signal tracks), peak regions.
-enrichment_heatmap/  Scripts for Figure 1DF
-peak_count_heatmap/  Scripts for Figure 2B
-peak_annotation/ Scripts for Figure 2C, Figure 3B
-fragment_decomposition/  Scripts for Figure 2D
-bicluster/   Scripts for Figure 3A
-whole_genome_count/  Scripts for Figure 3A
-highly_variable_regions/ Scripts for Figure 3A
-TF_binding_site_enrichment/  Figure 3C
-gene_expression_prediction_model/    Scripts for Figure 4,5
-differential_analysis/   Scripts for Figure S5
+preprocess/  Processing raw sequencing files to bam files, bigwig files (for signal tracks), peak regions.  
+enrichment_heatmap/  Scripts for Figure 1DF  
+peak_count_heatmap/  Scripts for Figure 2B  
+peak_annotation/ Scripts for Figure 2C, Figure 3B  
+fragment_decomposition/  Scripts for Figure 2D  
+bicluster/   Scripts for Figure 3A  
+whole_genome_count/  Scripts for Figure 3A  
+highly_variable_regions/ Scripts for Figure 3A  
+TF_binding_site_enrichment/  Figure 3C  
+gene_expression_prediction_model/    Scripts for Figure 4,5  
+differential_analysis/   Scripts for Figure S5  
 single_cell/ Scripts for Figure 6
 
 ## Dependencies
