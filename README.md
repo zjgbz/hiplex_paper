@@ -10,7 +10,7 @@ Schematic workflow
 
 ## Repository structure
 
-`preprocess/`  Processing raw sequencing files to bam files, bigwig files (for signal `tracks), peak regions.  
+`preprocess/`  Processing raw sequencing files to bam files, bigwig files (for signal tracks), peak regions.  
 `enrichment_heatmap/`  Scripts for Figure 1DF  
 `peak_count_heatmap/`  Scripts for Figure 2B  
 `peak_annotation/` Scripts for Figure 2C, Figure 3B  
@@ -25,24 +25,11 @@ Schematic workflow
 
 ## Dependencies
 
-Analysis was performed in R (>= 4.3) with the following packages  
-data.table  
-fread  
-fwrite  
-data.table  
-as.data.table  
-setDT  
-set  
-setnames  
-setcolorder  
-setkey  
-setindex  
-rbindlist  
+Analysis was performed in R (>= 4.3) with the following packages   
 BiocParallel  
 BiocGenerics  
 GenomicRanges  
 ComplexHeatmap  
-S4Vectors
 
 And also in Python (>= 3.9) with the following packages  
 numpy  
@@ -51,6 +38,6 @@ pyarrow
 scikit-learn  
 qnorm
 
-## Quick start (overview)
+## Quick start
 
 The current repository contains the exact scripts used for the analyses in the paper.A frozen release with example data and step-by-step instructions for reproducing key analyses will be made available during peer review (e.g. via Zenodo). Reviewers are welcome to inspect the code structure; we will be happy to provide additional documentation or demo scripts upon request.
