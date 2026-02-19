@@ -1,9 +1,35 @@
-rm(list=ls())
-library(ggplot2)
-library(ggrepel)
-library(glue)
+# Input: Fragment count and percentage data from ../data/frag_decomposition/
+#        - frag_split_fastq-demux_num_{V,T}_peak-valley-notrimer.tsv (fragment counts)
+#        - frag_split_fastq-demux_per_{V,T}_peak-valley-notrimer.tsv (fragment percentages)
+# Output: Differential analysis results and volcano plots saved to ../results/Figure2/
+#        - diff_{subnucleo,monomer,dimer}.tsv (Fisher's exact test results)
+#        - volcano_{per_l2fc,log_OR}_{zoom,full}_{subnucleo,monomer,dimer}.pdf (volcano plots)
 
-frag_len_dir = "/dcs05/hongkai/data/next_cutntag/bulk/frag_len"
+rm(list=ls())
+
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+packages <- c("ggplot2", "ggrepel", "glue")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(ggrepel)
+  library(glue)
+})
+
+
+args <- commandArgs(trailingOnly = TRUE)
+frag_len_dir <- args[1]
+out_dir <- args[2]
+
+
+dir.create(out_dir, recursive = TRUE, showWarnings = FALSE)
+
 before_num_filename = "frag_split_fastq-demux_num_V_peak-valley-notrimer.tsv"
 after_num_filename = "frag_split_fastq-demux_num_T_peak-valley-notrimer.tsv"
 before_num_dir_filename = file.path(frag_len_dir, before_num_filename)
@@ -19,7 +45,6 @@ before_per = read.table(before_per_dir_filename, sep="\t", check.names=FALSE, he
 after_per = read.table(after_per_dir_filename, sep="\t", check.names=FALSE, header=TRUE, row.names=1)
 
 frag_type_list = c("subnucleo", "monomer", "dimer")
-# frag_type_list = c("subnucleo")
 target_pair_list = rownames(before_num)
 
 l2fc_thres = 0.1
@@ -56,8 +81,9 @@ for (frag_type_i in frag_type_list) {
     frag_diff_i[, "pvalue_adj"] = p.adjust(frag_diff_i$pvalue, method = "BH")
     frag_diff_i[, "log10_pvalue_adj"] = -log10(frag_diff_i$pvalue_adj)
 
+    # 保存到 out_dir
     frag_diff_i_filename = glue("diff_{frag_type_i}.tsv")
-    frag_diff_i_dir_filename = file.path(frag_len_dir, frag_diff_i_filename)
+    frag_diff_i_dir_filename = file.path(out_dir, frag_diff_i_filename)
     write.table(frag_diff_i, frag_diff_i_dir_filename, sep="\t", quote=FALSE, row.names=FALSE)
 
     # l2fc per; zoom in y axis
@@ -71,14 +97,14 @@ for (frag_type_i in frag_type_list) {
                             geom_hline(yintercept = -log10(0.05), col = "gray", linetype = 'dashed') +
                             geom_point(size = 1) + ylim(-0.01, 10) + xlim(-frag_diff_i_per_l2fc_thres, frag_diff_i_per_l2fc_thres)
     if (frag_type_i != "subnucleo") {
-        diff_per_zoom_plot = diff_per_zoom_plot + scale_color_manual(values = c("#00AFBB", "grey", "#BB0E08"), # to set the colours of our variable
+        diff_per_zoom_plot = diff_per_zoom_plot + scale_color_manual(values = c("#00AFBB", "grey", "#BB0E08"),
                                                                         labels = c("V", "Not significant", "T"))
     } else if (frag_type_i == "subnucleo") {
-        diff_per_zoom_plot = diff_per_zoom_plot + scale_color_manual(values = c("grey", "#BB0E08"), # to set the colours of our variable
+        diff_per_zoom_plot = diff_per_zoom_plot + scale_color_manual(values = c("grey", "#BB0E08"),
                                                                         labels = c("Not significant", "T"))
     }
     diff_per_zoom_plot_filename = paste0("volcano_per_l2fc_zoom_", frag_type_i, ".pdf")
-    diff_per_zoom_plot_dir_filename = file.path(frag_len_dir, diff_per_zoom_plot_filename)
+    diff_per_zoom_plot_dir_filename = file.path(out_dir, diff_per_zoom_plot_filename)
     ggsave(diff_per_zoom_plot_dir_filename, diff_per_zoom_plot, width = 5, height = 5)
 
     # l2fc per; full y axis
@@ -87,14 +113,14 @@ for (frag_type_i in frag_type_list) {
                             geom_hline(yintercept = -log10(0.05), col = "gray", linetype = 'dashed') +
                             geom_point(size = 1) + xlim(-frag_diff_i_per_l2fc_thres, frag_diff_i_per_l2fc_thres)
     if (frag_type_i != "subnucleo") {
-        diff_per_full_plot = diff_per_full_plot + scale_color_manual(values = c("#00AFBB", "grey", "#BB0E08"), # to set the colours of our variable
+        diff_per_full_plot = diff_per_full_plot + scale_color_manual(values = c("#00AFBB", "grey", "#BB0E08"),
                                                                         labels = c("V", "Not significant", "T"))
     } else if (frag_type_i == "subnucleo") {
-        diff_per_full_plot = diff_per_full_plot + scale_color_manual(values = c("grey", "#BB0E08"), # to set the colours of our variable
+        diff_per_full_plot = diff_per_full_plot + scale_color_manual(values = c("grey", "#BB0E08"),
                                                                         labels = c("Not significant", "T"))
     }
     diff_per_full_plot_filename = paste0("volcano_per_l2fc_full_", frag_type_i, ".pdf")
-    diff_per_full_plot_dir_filename = file.path(frag_len_dir, diff_per_full_plot_filename)
+    diff_per_full_plot_dir_filename = file.path(out_dir, diff_per_full_plot_filename)
     ggsave(diff_per_full_plot_dir_filename, diff_per_full_plot, width = 5, height = 5)
 
     # log OR; zoom in y axis
@@ -109,14 +135,14 @@ for (frag_type_i in frag_type_list) {
                             geom_text_repel(data=frag_diff_i_select, aes(x=log_OR, y=log10_pvalue_adj,label=target_pair), size = 1.5) +
                             geom_point(size = 1) + ylim(-0.01, 10) + xlim(-frag_diff_i_log_OR_thres, frag_diff_i_log_OR_thres)
     if (frag_type_i != "subnucleo") {
-        diff_log_OR_zoom_plot = diff_log_OR_zoom_plot + scale_color_manual(values = c("#00AFBB", "grey", "#BB0E08"), # to set the colours of our variable
+        diff_log_OR_zoom_plot = diff_log_OR_zoom_plot + scale_color_manual(values = c("#00AFBB", "grey", "#BB0E08"),
                                                                         labels = c("V", "Not significant", "T"))
     } else if (frag_type_i == "subnucleo") {
-        diff_log_OR_zoom_plot = diff_log_OR_zoom_plot + scale_color_manual(values = c("grey", "#BB0E08"), # to set the colours of our variable
+        diff_log_OR_zoom_plot = diff_log_OR_zoom_plot + scale_color_manual(values = c("grey", "#BB0E08"),
                                                                         labels = c("Not significant", "T"))
     }
     diff_log_OR_zoom_plot_filename = paste0("volcano_log_OR_zoom_", frag_type_i, ".pdf")
-    diff_log_OR_zoom_plot_dir_filename = file.path(frag_len_dir, diff_log_OR_zoom_plot_filename)
+    diff_log_OR_zoom_plot_dir_filename = file.path(out_dir, diff_log_OR_zoom_plot_filename)
     ggsave(diff_log_OR_zoom_plot_dir_filename, diff_log_OR_zoom_plot, width = 5, height = 5)
 
     # log OR; full y axis
@@ -126,14 +152,14 @@ for (frag_type_i in frag_type_list) {
                             geom_text_repel(data=frag_diff_i_select, aes(x=log_OR, y=log10_pvalue_adj,label=target_pair), size = 1.5) +
                             geom_point(size = 1) + xlim(-frag_diff_i_log_OR_thres, frag_diff_i_log_OR_thres)
     if (frag_type_i != "subnucleo") {
-        diff_log_OR_full_plot = diff_log_OR_full_plot + scale_color_manual(values = c("#00AFBB", "grey", "#BB0E08"), # to set the colours of our variable
+        diff_log_OR_full_plot = diff_log_OR_full_plot + scale_color_manual(values = c("#00AFBB", "grey", "#BB0E08"),
                                                                         labels = c("V", "Not significant", "T"))
     } else if (frag_type_i == "subnucleo") {
-        diff_log_OR_full_plot = diff_log_OR_full_plot + scale_color_manual(values = c("grey", "#BB0E08"), # to set the colours of our variable
+        diff_log_OR_full_plot = diff_log_OR_full_plot + scale_color_manual(values = c("grey", "#BB0E08"),
                                                                         labels = c("Not significant", "T"))
     }
     diff_log_OR_full_plot_filename = paste0("volcano_log_OR_full_", frag_type_i, ".pdf")
-    diff_log_OR_full_plot_dir_filename = file.path(frag_len_dir, diff_log_OR_full_plot_filename)
+    diff_log_OR_full_plot_dir_filename = file.path(out_dir, diff_log_OR_full_plot_filename)
     ggsave(diff_log_OR_full_plot_dir_filename, diff_log_OR_full_plot, width = 5, height = 5)
 
     print(c(frag_type_i, max(frag_diff_i$log_OR), min(frag_diff_i$log_OR), max(frag_diff_i$per_l2fc), min(frag_diff_i$per_l2fc)))

@@ -1,13 +1,29 @@
+# Input: ../data/frag_decomposition/{scen}-premerge_all_frag_lens.RData (fragment length data: bamWidths)
+# Output: ../results/Figure2/{scen}_all_frag_hist_density.pdf (histogram with density overlay)
+
 rm(list=ls())
 # library(GenomicAlignments)
 # library(mixtools)
 # library(mclust)
-library(ggplot2)
+
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+packages <- c("ggplot2")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+})
 
 scen_list = c("V")
 # scen_list = c("T")
-frag_dir = "/dcs05/hongkai/data/next_cutntag/bulk/frag_len"
-save_dir = "/dcs05/hongkai/data/next_cutntag/bulk/frag_len"
+args <- commandArgs(trailingOnly = TRUE)
+frag_dir <- args[1]
+save_dir <- args[2]
 
 for (scen in scen_list) {
 	bam_overplot_filename = paste0(scen, "_all_frag_hist_density.pdf")

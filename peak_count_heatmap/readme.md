@@ -32,4 +32,5 @@ The expected output directory is:
 
 Within this directory, you will find `V.pdf` - Heatmap showing log2-transformed peak counts for all target pair combinations
 
+Note: Refers to Figure2B in Paper
 

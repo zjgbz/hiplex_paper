@@ -1,12 +1,34 @@
-library(ggplot2)
-library("dplyr")
-library(glue)
-library(latex2exp)
-library(cowplot)
+# Input: {frag_dir}/frag_split_fastq-demux_per_V_{valley-all-qc,valley-V-qc}.tsv (fragment length percentage data)
+# Output: {save_dir}/barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_{size_category}.pdf (individual barplots)
+#         {save_dir}/barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_summary.pdf (combined 3-panel summary)
+#         {save_dir}/barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_all.pdf (full barplot)
+#         {save_dir}/barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_all.csv (data table)
 
-source("/dcs05/hongkai/data/next_cutntag/script/utils/map_target_pair_names.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/utils.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/filter_targets.R")
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+packages <- c("ggplot2", "dplyr", "glue", "latex2exp", "cowplot")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(dplyr)
+  library(glue)
+  library(latex2exp)
+  library(cowplot)
+})
+
+
+source("../hiplex_paper/utils.R")
+
+args <- commandArgs(trailingOnly = TRUE)
+frag_dir <- args[1]
+save_dir <- args[2]
+
+dir.create(save_dir, recursive = TRUE, showWarnings = FALSE)
 
 target_pair_list = filter_target_pairs(0.25)
 
@@ -35,7 +57,7 @@ list_to_dataframe <- function(dataList) {
 frag_decomp_types <- c("valley-all-qc", "valley-V-qc")
 plts <- list()
 for (frag_decomp_type in frag_decomp_types) {
-  frag_len_percent_file <- glue("/dcs05/hongkai/data/next_cutntag/bulk/frag_len/frag_split_fastq-demux_per_V_{frag_decomp_type}.tsv")
+  frag_len_percent_file <- file.path(frag_dir, glue("frag_split_fastq-demux_per_V_{frag_decomp_type}.tsv"))
   frag_len_percent <- read.table(frag_len_percent_file, sep = "\t", header = TRUE, row.names = 1)
   frag_len_percent_filtered <- frag_len_percent[target_pair_list,]
   colnames(frag_len_percent_filtered)[3] <- "dimer+"
@@ -71,14 +93,14 @@ for (frag_decomp_type in frag_decomp_types) {
            y = "Reads percentage",
            x = "condition") + coord_flip()
     plts[[frag_decomp_type]][[size_category]] <- p
-    pdf(glue("/dcs05/hongkai/data/next_cutntag/bulk/frag_len/barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_{size_category}.pdf"), height=5, width=8)
+    pdf(file.path(save_dir, glue("barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_{size_category}.pdf")), height=5, width=8)
     print(p)
     dev.off()
   }
 }
 legend <- get_legend(p)
 for (frag_decomp_type in frag_decomp_types) {
-  pdf(glue("/dcs05/hongkai/data/next_cutntag/bulk/frag_len/barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_summary.pdf"), height=6, width=14)
+  pdf(file.path(save_dir, glue("barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_summary.pdf")), height=6, width=14)
   print(plot_grid(
     plts[[frag_decomp_type]][["subnucleo"]]+ theme(legend.position="none"),
     plts[[frag_decomp_type]][["monomer"]]+ theme(legend.position="none"),
@@ -90,16 +112,12 @@ for (frag_decomp_type in frag_decomp_types) {
     rel_widths = c(1, 1, 1, 0.3)
   ))
   dev.off()
-  
 }
-
-
-
 
 frag_decomp_types <- c("valley-all-qc", "valley-V-qc")
 plts <- list()
 for (frag_decomp_type in frag_decomp_types) {
-  frag_len_percent_file <- glue("/dcs05/hongkai/data/next_cutntag/bulk/frag_len/frag_split_fastq-demux_per_V_{frag_decomp_type}.tsv")
+  frag_len_percent_file <- file.path(frag_dir, glue("frag_split_fastq-demux_per_V_{frag_decomp_type}.tsv"))
   frag_len_percent <- read.table(frag_len_percent_file, sep = "\t", header = TRUE, row.names = 1)
   frag_len_percent_filtered <- frag_len_percent[target_pair_list,]
   colnames(frag_len_percent_filtered)[3] <- "dimer+"
@@ -118,7 +136,7 @@ for (frag_decomp_type in frag_decomp_types) {
   barplot_df$.id <- map_target_names(barplot_df$.id , target_pair_mapping_df)
   barplot_df$.id <- factor(barplot_df$.id, levels=rev(map_target_names(rownames(frag_len_percent_filtered_ordered),target_pair_mapping_df)))
   barplot_df$type <- factor(barplot_df$type, levels = rev(c("subnucleo", "monomer", "dimer+")))
-  write.csv(barplot_df, glue("/dcs05/hongkai/data/next_cutntag/bulk/frag_len/barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_all.csv"), quote = FALSE, row.names = FALSE)
+  write.csv(barplot_df, file.path(save_dir, glue("barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_all.csv")), quote = FALSE, row.names = FALSE)
   # data <- data.frame(x = age, y = hours, group = city)
   p <- ggplot(barplot_df, aes(fill=type, y=percentage, x=.id)) + 
     scale_x_discrete(labels = TeX) +
@@ -137,8 +155,7 @@ for (frag_decomp_type in frag_decomp_types) {
          y = "Reads percentage",
          x = "condition") + coord_flip()
   plts[[frag_decomp_type]][[size_category]] <- p
-  pdf(glue("/dcs05/hongkai/data/next_cutntag/bulk/frag_len/barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_all.pdf"), height=120, width=8)
+  pdf(file.path(save_dir, glue("barplot_frag_split_fastq-demux_per_V_{frag_decomp_type}_sort_on_all.pdf")), height=120, width=8)
   print(p)
   dev.off()
-  
 }

@@ -1,5 +1,19 @@
+# Input: ../data/frag_decomposition/all_all_frag_lens.RData (fragment length data: bamWidths)
+# Output: ../results/Figure2/frag_len_distribution_{scen}.pdf (fragment length distribution with valley markers)
 rm(list=ls())
-library(sfsmisc)
+
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+packages <- c("sfsmisc")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(sfsmisc)
+})
 
 derivative <- function(x, y) { # create a function with the name my_function
 	x_0 = x[1:(length(x) - 1)]
@@ -14,8 +28,9 @@ derivative <- function(x, y) { # create a function with the name my_function
 
 # scen_list = c("T", "V")
 scen_list = c("all")
-frag_dir = "/dcs05/hongkai/data/next_cutntag/bulk/frag_len"
-save_dir = "/dcs05/hongkai/data/next_cutntag/bulk/frag_len"
+args <- commandArgs(trailingOnly = TRUE)
+frag_dir <- args[1]
+save_dir <- args[2]
 dens_reso = 2^15
 density_kernel = "gaussian"
 
@@ -69,6 +84,8 @@ hist_x_3o_max = 445
 hist_x_3d2_max = 444.6345
 
 for (scen in scen_list) {
+	pdf_filename = file.path(save_dir, paste0("frag_len_distribution_", scen, ".pdf"))
+	pdf(pdf_filename, width = 8, height = 6)
 	# bam_bundle_filename = paste0(scen, "-premerge_all-qc_frag_lens.RData")
 	# bam_bundle_filename = paste0(scen, "-premerge_all_frag_lens.RData")
     bam_bundle_filename = paste0(scen, "_all_frag_lens.RData") # if scen = "all" without any QC
@@ -146,6 +163,7 @@ for (scen in scen_list) {
 	# # plot(dif_x_3, dif_y_3, pch=20, cex=0.1, col="red")
 	# # par(new=TRUE)
 	# # plot(diff_x_3, diff_y_3, pch=20, cex=0.1, col="blue")
+	dev.off()
 }
 # png(bam_overplot_dir_filename)
 # hist(bamWidths, breaks = 160)
