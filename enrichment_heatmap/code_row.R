@@ -1,14 +1,14 @@
 #usage:#Rscript code_row.R "/Users/kyu/Documents/thesis/data/bigwig_normalized/V" "/Users/kyu/Documents/thesis/data/peak/data_peak_auc_0.05/V" "H3K27me3" "H3K4me3"
 args <- commandArgs(trailingOnly = TRUE)
 
-if (FALSE) {
-  args <- c(
-    "/Users/kyu/Documents/thesis/data/bigwig_normalized/V",
-    "/Users/kyu/Documents/thesis/data/peak/data_peak_auc_0.05_extend_window_10000_binomial/V/",
-    "H3K27me3", "H3K27ac", "#97BE5A", "#f5ac8e", "#2878B5", "1", 
-    "/Users/kyu/Documents/thesis/scripts/enriched_heatmap/result/data_peak_auc_0.05_ctrl-singletone_stringent/"
-  )
-}
+# if (FALSE) {
+#   args <- c(
+#     "/Users/kyu/Documents/thesis/data/bigwig_normalized/V",
+#     "/Users/kyu/Documents/thesis/data/peak/data_peak_auc_0.05_extend_window_10000_binomial/V/",
+#     "H3K27me3", "H3K27ac", "#97BE5A", "#f5ac8e", "#2878B5", "1", 
+#     "/Users/kyu/Documents/thesis/scripts/enriched_heatmap/result/data_peak_auc_0.05_ctrl-singletone_stringent/"
+#   )
+# }
 
 dir_bw <- args[1]
 dir_peak <- args[2]
@@ -21,6 +21,29 @@ maxlimit<- as.numeric(args[8])
 out_dir <- args[9]
 subsample_t1 <- args[10]
 subsample_t2 <- args[11]
+
+if (!requireNamespace("BiocManager", quietly = TRUE)) {
+    install.packages("BiocManager")
+}
+
+install_if_missing <- function(pkg) {
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+        if (pkg %in% bioc_packages) {
+            BiocManager::install(pkg)
+        } else {
+            install.packages(pkg)
+        }
+    }
+}
+
+# List of Bioconductor packages
+bioc_packages <- c("GenomicAlignments", "Biostrings", "EnrichedHeatmap", "rtracklayer")
+
+# List of CRAN packages
+cran_packages <- c("data.table", "circlize", "glue")
+
+lapply(bioc_packages, install_if_missing)
+lapply(cran_packages, install_if_missing)
 
 suppressPackageStartupMessages({
   library(GenomicAlignments)
@@ -199,7 +222,7 @@ if (has_overlap) {
                                  axis_name = axis_name,
                                  name = target2_name)
   
-  ht1Inter = draw(draw1Inter); ht2Inter = draw(draw1Inter); 
+  ht1Inter = draw(draw1Inter); ht2Inter = draw(draw2Inter); 
   
   order1Inter <- row_order(ht1Inter)
   order2Inter <- row_order(ht2Inter)

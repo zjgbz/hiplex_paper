@@ -1,12 +1,31 @@
-library(ChIPseeker)
-library(ComplexHeatmap)
-library(glue)
-library(latex2exp)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    bioc_packages <- c("ChIPseeker", "ComplexHeatmap")
+    
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
 
-source("/dcs05/hongkai/data/next_cutntag/script/utils/utils.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/filter_targets.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/map_target_pair_names.R")
+packages <- c("ChIPseeker", "ComplexHeatmap", "glue", "latex2exp")
 
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ChIPseeker)
+  library(ComplexHeatmap)
+  library(glue)
+  library(latex2exp)
+})
+
+
+source("../hiplex_paper/utils.R")
 
 args <- commandArgs(trailingOnly = TRUE)
 peak_dir <- args[1]
@@ -26,8 +45,6 @@ splits <- c(rep(1, 12), 2, rep(3, 14), rep(4, 9))
 tags_peak_num_mat <- matrix(0, nrow = length(tags), ncol = length(tags))
 rownames(tags_peak_num_mat) <- tags
 colnames(tags_peak_num_mat) <- tags
-
-
 
 all_target_pair_list <- target_pair_generation(tags)
 target_pair_list = filter_target_pairs(0.25)
