@@ -1,7 +1,7 @@
 # Hiplex Paper - Peak Count Heatmap
 
 ## Overview
-This command is used to generate peak count heatmaps from genomic data. The heatmap visualizes the number of peaks for each target pair combination, with targets grouped by categories (Histone Modification, Writer, Transcription Factor).
+This script is used to generate peak count heatmaps from genomic data. The heatmap visualizes the number of peaks for each target pair combination, with targets grouped by categories (Histone Modification, Writer, Transcription Factor).
 
 ## Prerequisites
 Before running the analysis, ensure you have the following R packages installed:
@@ -22,7 +22,7 @@ Make sure you are in the `hiplex_paper`directory:
 ## How to Run
 Run in terminal:
 
-`bash peak_count_heatmap/run_peak_count_heatmap.sh` (approximately - minutes)
+`bash peak_count_heatmap/run_peak_count_heatmap.sh` (approximately 5 minutes)
 
 ## Output/Results
 

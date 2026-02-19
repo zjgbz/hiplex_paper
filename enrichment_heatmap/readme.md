@@ -1,7 +1,7 @@
 # Hiplex Paper - Enrichment Heatmap
 
 ## Overview
-This command is used to generate enrichment heatmaps from genomic data. Please follow the instructions below to ensure the correct setup and usage of the scripts.
+This script is used to generate enrichment heatmaps from genomic data. Please follow the instructions below to ensure the correct setup and usage of the scripts.
 
 ## Prerequisites
 Before running the analysis, ensure you have the following R packages installed:
