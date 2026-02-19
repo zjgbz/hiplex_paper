@@ -24,7 +24,9 @@ Make sure you are in the `hiplex_paper`directory:
 ## How to Run
 Run in terminal:
 
-`bash fragment_decomposition/run_fragment_decomposition.sh` (approximately 5 minutes)
+1. To reproduce Figure2D: `bash fragment_decomposition/run_fragment_decomposition.sh` (approximately 2 minutes)
+
+2. To reproduce all results: `bash fragment_decomposition/run_all_plots.sh` (approximately 5 minutes)
 
 ## Output/Results
 
