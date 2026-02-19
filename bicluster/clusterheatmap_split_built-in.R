@@ -1,11 +1,37 @@
 rm(list=ls())
-library(ComplexHeatmap)
-library(arrow)
-library(rtracklayer)
-library(tibble)
-library(latex2exp)
-library(glue)
-source("/dcs05/hongkai/data/next_cutntag/script/utils/map_target_pair_names.R")
+
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("ComplexHeatmap", "rtracklayer")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("ComplexHeatmap", "arrow", "rtracklayer", "tibble", "latex2exp", "glue")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ComplexHeatmap)
+  library(arrow)
+  library(rtracklayer)
+  library(tibble)
+  library(latex2exp)
+  library(glue)
+})
+
+args <- commandArgs(trailingOnly = TRUE)
+wgc_dir <- args[1]
+heatmap_dir <- args[2]
+
+source("../hiplex_paper/utils.R")
 
 calc_ht_size = function(ht, heatmap_legend_side=NULL, unit = "inch") {
 	pdf(NULL)
@@ -29,8 +55,6 @@ clustering_method = "kmeans"
 distance_method_list = c("euclidean")
 show_dend = "on"
 
-wgc_dir = "/dcs05/hongkai/data/next_cutntag/bulk/wgc/mixed/800"
-heatmap_dir = wgc_dir
 wgc_filename = "V1V2_mixed_800_colQC-all-qc_libnorm_noAllZero_log2_qnorm_gam-40_per-0.01_mean-0.99.feather"
 scen = "V"
 wgc_dir_filename = file.path(wgc_dir, wgc_filename)

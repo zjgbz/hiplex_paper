@@ -26,7 +26,7 @@ suppressPackageStartupMessages({
 	library(preprocessCore)
 	library(tibble)
 })
-source("/dcs05/hongkai/data/next_cutntag/script/utils/filter_targets.R")
+source("../hiplex_paper/utils.R") 
 target_pairs_remained = filter_target_pairs(percentage_cutoff = 0.25)
 
 single_target_pair_sort_generation <- function(target_1, target_2) {

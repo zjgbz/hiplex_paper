@@ -23,7 +23,7 @@ suppressPackageStartupMessages({
 	library(arrow)
 	# library(data.table)
 })
-source("/dcs05/hongkai/data/next_cutntag/script/utils/filter_targets.R")
+source("../hiplex_paper/utils.R") 
 
 single_target_pair_sort_generation <- function(target_1, target_2) {
 	sort_target_1_target_2 = sort(c(target_1, target_2), method="radix")

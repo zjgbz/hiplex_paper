@@ -1,5 +1,5 @@
 
-peak_dir="../data/frag_decomposition"
+read_dir="../data/frag_decomposition"
 out_dir="../results/Figure2"
 mkdir -p $out_dir
 
@@ -7,5 +7,5 @@ mkdir -p $out_dir
 module load conda_R
 
 Rscript ../hiplex_paper/fragment_decomposition/barplot.R \
-    $peak_dir \
+    $read_dir \
     $out_dir
