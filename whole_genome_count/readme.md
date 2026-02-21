@@ -26,7 +26,9 @@ Make sure you are in the `hiplex_paper`directory:
 ## How to Run
 Run in terminal:
 
-`bash whole_genome_count/run_whole_genome_count.sh` (approximately 18:40 minutes)
+`bash whole_genome_count/run_whole_genome_count.sh` (approximately 2 hours)
+
+Note: Suggests request 800G
 
 ## Output/Results
 
