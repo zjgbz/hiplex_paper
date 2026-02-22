@@ -6,7 +6,7 @@ library(glue)
 #motif_lib_hg38 <- readRDS("/dcl02/hongkai/data/wzhou14/sc_immune/motif_mapping/jaspar_motif/map_human/motif_JASPAR_hg19.rds")
 # motif_lib_hg38 <- readRDS("/dcl02/hongkai/data/wzhou14/sc_immune/motif_mapping/jaspar_motif/map_human/motif_JASPAR_hg38.rds")
 #motif_lib_mm10 <- readRDS("/dcl02/hongkai/data/wzhou14/sc_immune/motif_mapping/jaspar_motif/map_mouse/motif_JASPAR_mm10.rds")
-motif_lib_hg38 <- readRDS("/dcs05/hongkai/data/next_cutntag/public_data/ChIPSeq/TFs/peak.rds")
+motif_lib_hg38 <- readRDS("../data/TF_binding_site_enrichment/peak.rds")
 ##known motif enrichment
 enrich_motif <- function(
 	target_region,

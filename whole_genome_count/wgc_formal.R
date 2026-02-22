@@ -1,31 +1,39 @@
 start_time <- Sys.time()
 
-list.of.packages <- c("data.table", "arrow") # libraries from CRAN
-new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
-if(length(new.packages)) install.packages(new.packages)
-
-listOfBiocPackages = c("GenomicAlignments", 
-	"GenomicRanges", 
-	"Biostrings", 
-	"BSgenome.Hsapiens.NCBI.GRCh38",
-	"plyranges") # libraries from bioconductor
-notInstalled <- which(!listOfBiocPackages %in% rownames(installed.packages()))
-
-if( length(notInstalled) ) {
-	BiocManager::install(listOfBiocPackages[notInstalled])
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("GenomicAlignments", "GenomicRanges", "Biostrings", 
+                       "BSgenome.Hsapiens.NCBI.GRCh38", "plyranges")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
 }
 
+packages <- c("data.table", "arrow", "R.utils", "preprocessCore", "tibble",
+              "GenomicAlignments", "GenomicRanges", "Biostrings", 
+              "BSgenome.Hsapiens.NCBI.GRCh38", "plyranges")
+
+lapply(packages, install_if_missing)
+
 suppressPackageStartupMessages({
-	library(R.utils)
-	library(GenomicAlignments)
-	library(GenomicRanges)
-	library(Biostrings)
-	library(BSgenome.Hsapiens.NCBI.GRCh38)
-	library(plyranges)
-	library(arrow)
-	library(preprocessCore)
-	library(tibble)
+  library(R.utils)
+  library(GenomicAlignments)
+  library(GenomicRanges)
+  library(Biostrings)
+  library(BSgenome.Hsapiens.NCBI.GRCh38)
+  library(plyranges)
+  library(arrow)
+  library(preprocessCore)
+  library(tibble)
 })
+
 source("../hiplex_paper/utils.R") 
 target_pairs_remained = filter_target_pairs(percentage_cutoff = 0.25)
 

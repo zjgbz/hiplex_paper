@@ -1,7 +1,7 @@
 library(plyranges)
 library(ChIPseeker)
 
-source("/dcs05/hongkai/data/next_cutntag/script/motif_analysis/peak_enrichment.R")
+source("../hiplex_paper/TF_binding_site_enrichment/peak_enrichment.R")
 options <- commandArgs(trailingOnly = TRUE)
 target_bed_file <- options[1]
 control_bed_file <- options[2]
