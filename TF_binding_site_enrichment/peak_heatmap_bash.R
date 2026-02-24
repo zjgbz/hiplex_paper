@@ -1,10 +1,30 @@
-library(ComplexHeatmap)
-library(plyranges)
-library(rtracklayer)
-library(matrixTests)
-library(latex2exp)
-library(glue)
-library(circlize)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("ComplexHeatmap", "plyranges", "rtracklayer")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("ComplexHeatmap", "plyranges", "rtracklayer", "matrixTests", "latex2exp", "glue", "circlize")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ComplexHeatmap)
+  library(plyranges)
+  library(rtracklayer)
+  library(matrixTests)
+  library(latex2exp)
+  library(glue)
+  library(circlize)
+})
 
 # Rscript /dcs05/hongkai/data/next_cutntag/script/motif_analysis/peak_heatma_bash.R /dcs05/hongkai/data/next_cutntag/bulk/motif_analysis/gw /dcs05/hongkai/data/next_cutntag/bulk/motif_analysis/hm/gw/peak_analysis/
 # options <- c("/dcs05/hongkai/data/next_cutntag/bulk/motif_analysis/gw", "/dcs05/hongkai/data/next_cutntag/bulk/motif_analysis/hm/gw/peak_analysis/")
@@ -42,6 +62,7 @@ motif_odds_ratio <- list()
 motif_result_file_i <- motif_results_dirs[1]
 motif_result <- read.table(motif_result_file_i, sep="\t")
 motif_id_order <- rownames(motif_result)
+
 for (folder in folders) {
   motif_file_results <- list()
   motif_result_file_i <- glue("{motif_result_dir}/{folder}/peak_result/result.tsv")

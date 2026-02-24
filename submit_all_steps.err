@@ -1,1 +1,69 @@
+Unloading conda_R/4.4
 Loading conda_R/4.4
+Warning message:
+In dir.create(save_dir, recursive = TRUE) :
+  '../results/FigureS5/column_cluster_fig' already exists
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+Warning messages:
+1: Removed 1 row containing missing values or values outside the scale range
+(`stat_pointdensity()`). 
+2: Removed 1 row containing non-finite outside the scale range (`stat_smooth()`). 
+3: Removed 1 row containing missing values or values outside the scale range
+(`geom_point()`). 
+4: Removed 2 rows containing missing values or values outside the scale range
+(`stat_pointdensity()`). 
+5: Removed 2 rows containing non-finite outside the scale range (`stat_smooth()`). 
+6: Removed 6 rows containing missing values or values outside the scale range
+(`geom_point()`). 
+The automatically generated colors map from the 1^st and 99^th of the
+values in the matrix. There are outliers in the matrix whose patterns
+might be hidden by this color mapping. You can manually set the color
+to `col` argument.
+
+Use `suppressMessages()` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.
+`use_raster` is automatically set to TRUE for a matrix with more than
+2000 rows. You can control `use_raster` argument by explicitly setting
+TRUE/FALSE to it.
+
+Set `ht_opt$message = FALSE` to turn off this message.

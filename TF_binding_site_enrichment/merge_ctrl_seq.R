@@ -1,6 +1,26 @@
-library(rtracklayer)
-library(GenomicRanges)
-library(glue)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("rtracklayer", "GenomicRanges")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("rtracklayer", "GenomicRanges", "glue")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(rtracklayer)
+  library(GenomicRanges)
+  library(glue)
+})
 
 options <- commandArgs(trailingOnly = TRUE)
 if (length(options) != 0) {

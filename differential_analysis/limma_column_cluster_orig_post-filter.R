@@ -1,10 +1,30 @@
 rm(list=ls())
-library(arrow)
-library(tibble)
-library(glue)
-library(latex2exp)
-library(edgeR)
-library(matrixStats)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("edgeR", "limma")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("arrow", "tibble", "glue", "latex2exp", "edgeR", "matrixStats")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(arrow)
+  library(tibble)
+  library(glue)
+  library(latex2exp)
+  library(edgeR)
+  library(matrixStats)
+})
 
 frag_len = 800
 frag_type = "mixed"
@@ -23,14 +43,24 @@ group2 = c("T1", "T2")
 
 mm <- model.matrix(~0 + group)
 
-wgc_dir = "/dcs05/hongkai/data/next_cutntag/bulk/wgc/mixed/800"
-sig_result_dir = "/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_result"
-sig_wgc_dir = "/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_wgc"
-sig_plot_dir = "/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_fig"
+options <- commandArgs(trailingOnly = TRUE)
+if (length(options) != 0) {
+  wgc_dir <- options[1]
+  out_dir <- options[2]
+}
+
+sig_result_dir = paste0(out_dir, "/column_cluster_result")
+sig_wgc_dir = paste0(out_dir, "/column_cluster_wgc")
+sig_plot_dir = paste0(out_dir, "/column_cluster_fig")
+if (!dir.exists(sig_result_dir)) dir.create(sig_result_dir, recursive = TRUE)
+if (!dir.exists(sig_wgc_dir)) dir.create(sig_wgc_dir, recursive = TRUE)
+if (!dir.exists(sig_plot_dir)) dir.create(sig_plot_dir, recursive = TRUE)
+
 col_cluster_filename = "bicluster_V_mixed_all-qc_kmeans_euclidean_row_num-15_column_num-16_heatmap_column_clusters_raw_colnames_manually_reorganized.tsv"
 col_cluster_dir_filename = file.path(wgc_dir, col_cluster_filename)
 col_cluster = read.table(col_cluster_dir_filename, header=TRUE, sep="\t", row.names=NULL)
 col_label_list = unique(col_cluster$label)
+
 
 V1_wgc_orig_filename = glue("V1_{frag_type}_{frag_len}_colQC-{target_qc_type}_orig.feather")
 V2_wgc_orig_filename = glue("V2_{frag_type}_{frag_len}_colQC-{target_qc_type}_orig.feather")

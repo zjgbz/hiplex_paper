@@ -1,30 +1,58 @@
-library(arrow)
-library(GenomicRanges)
-library(glue)
-library(ggpointdensity)
-library(viridis)
-library(ComplexHeatmap)
-library(ggplot2)
-library(ggpubr)
-library(ggrastr)
-library(data.table)
-library(dplyr)
-library(circlize)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("GenomicRanges", "ComplexHeatmap")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("arrow", "GenomicRanges", "glue", "ggpointdensity", "viridis", 
+              "ComplexHeatmap", "ggplot2", "ggpubr", "ggrastr", "data.table", 
+              "dplyr", "circlize")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(arrow)
+  library(GenomicRanges)
+  library(glue)
+  library(ggpointdensity)
+  library(viridis)
+  library(ComplexHeatmap)
+  library(ggplot2)
+  library(ggpubr)
+  library(ggrastr)
+  library(data.table)
+  library(dplyr)
+  library(circlize)
+})
+
+options <- commandArgs(trailingOnly = TRUE)
+if (length(options) != 0) {
+  read_dir <- options[1]
+  out_dir <- options[2]
+}
 
 # read rnaseq dif result
-rnaseq_dir_filename ="/dcs05/hongkai/data/next_cutntag/bulk/RNA-seq/diff_expr_all_update.csv"
+rnaseq_dir_filename =paste0(read_dir, "/diff_expr_all_update.csv")
 rnaseq_raw = read.table(rnaseq_dir_filename, sep=",", check.names=FALSE, header=TRUE, row.names=1)
 rnaseq_raw = rnaseq_raw[!is.na(rnaseq_raw$log2FoldChange),]
 rnaseq_raw[, "log2FoldChange_TPM"] = rnaseq_raw$log2_T - rnaseq_raw$log2_V
 # get tss annotation
 promoter_range <- "0-0"
-promoter_file <- glue("/dcs05/hongkai/data/next_cutntag/bulk/RNA-seq/ccre_region/promoter_-{promoter_range}.tsv")
+promoter_file <- glue(paste0(read_dir, "/promoter_-{promoter_range}.tsv"))
 promoter_table <- read.table(promoter_file, sep = "\t", header = TRUE)
 promoter_table$seqnames <- paste0("chr", promoter_table$seqnames)
 promoter_grange <- makeGRangesFromDataFrame(promoter_table, seqnames.field = "seqnames", start.field = "start", end.field = "end", strand.field = "strand",keep.extra.columns = TRUE)
 
 
-save_dir <- '/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_fig'
+save_dir <- paste0(out_dir, "/column_cluster_fig")
 dir.create(save_dir, recursive = TRUE)
 plts <- list()
 ylim_top <- 7
@@ -34,7 +62,7 @@ xlim_bottom <- -3
 
 # cluster_id_list = c(1:8, 10:15)
 cluster_id_list = c(1, 12)
-load_dir = "/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_result"
+load_dir = paste0(out_dir, "/column_cluster_result")
 
 l2fc_thres = 0.5
 

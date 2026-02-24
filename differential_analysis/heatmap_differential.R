@@ -1,12 +1,32 @@
 rm(list=ls())
-library(arrow)
-library(tibble)
-library(glue)
-library(svglite)
-library(ComplexHeatmap)
-library(circlize)
-library(tidyr)
-library(dplyr)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("ComplexHeatmap")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("arrow", "tibble", "glue", "svglite", "ComplexHeatmap", "circlize", "tidyr", "dplyr")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(arrow)
+  library(tibble)
+  library(glue)
+  library(svglite)
+  library(ComplexHeatmap)
+  library(circlize)
+  library(tidyr)
+  library(dplyr)
+})
 
 ht_opt$COLUMN_ANNO_PADDING <- unit(6, "mm")
 
@@ -94,8 +114,16 @@ region_target_heatmap <- function(matrix, name, col_order, col_split, heatmap_pr
 method_sig_list = list("limma"=list("0.25"=c(1:8, 10:15)))
 # method_sig_list = list("limma"=list("0.25"=c(15)))
 method_filter_list = list("limma"=0.25)
-wgc_dir = "/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_wgc"
-fig_dir = "/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_fig"
+
+options <- commandArgs(trailingOnly = TRUE)
+if (length(options) != 0) {
+  read_dir <- options[1]
+  out_dir <- options[2]
+}
+
+wgc_dir = paste0(out_dir, "/column_cluster_wgc")
+fig_dir = paste0(out_dir, "/column_cluster_fig")
+
 l2fc_thres = 0.5
 show_heatmap_legend_switch = "on"
 show_colnames_switch = "on"

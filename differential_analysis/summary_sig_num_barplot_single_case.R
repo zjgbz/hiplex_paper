@@ -1,7 +1,18 @@
 rm(list=ls())
-library(glue)
-library(tidyr)
-library(ggplot2)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+packages <- c("glue", "tidyr", "ggplot2")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(glue)
+  library(tidyr)
+  library(ggplot2)
+})
 
 # fdr_thres_list = c(0.25, 0.1)
 # mean_filter_per_list = c(0.14, 0.25)
@@ -9,8 +20,15 @@ fdr_thres_list = c(0.25)
 mean_filter_per_list = c(0.25)
 l2fc_thres = 0.5
 
-fig_dir = "/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_fig"
-result_dir = "/dcs05/hongkai/data/next_cutntag/bulk/df_analysis/800/column_cluster_result"
+options <- commandArgs(trailingOnly = TRUE)
+if (length(options) != 0) {
+  wgc_dir <- options[1]
+  out_dir <- options[2]
+}
+
+
+fig_dir = paste0(out_dir, "/column_cluster_fig")
+result_dir = paste0(out_dir, "/column_cluster_result")
 
 for (mean_filter_per in mean_filter_per_list) {
     for (fdr_thres in fdr_thres_list) {
