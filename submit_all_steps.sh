@@ -12,4 +12,4 @@
 
 cd /dcs07/hongkai/data/mjiang/hiplex/paper_materials/hiplex_paper
 
-bash /dcs07/hongkai/data/mjiang/hiplex/paper_materials/hiplex_paper/differential_analysis/run_differential_analysis.sh
+bash /dcs07/hongkai/data/mjiang/hiplex/paper_materials/hiplex_paper/peak_annotation/run_peak_annotation.sh

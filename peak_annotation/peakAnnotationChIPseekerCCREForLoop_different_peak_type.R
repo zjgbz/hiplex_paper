@@ -1,4 +1,4 @@
-source("/dcs05/hongkai/data/next_cutntag/script/peak_annotation/scripts_for_manuscript_v2/CCREUtils.R")
+source("../hiplex_paper/peak_annotation/CCREUtils.R")
 library(glue)
 
 args <- commandArgs(trailingOnly = TRUE)

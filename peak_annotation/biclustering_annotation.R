@@ -7,20 +7,40 @@
 # ==============================================================================
 
 # Load Required Libraries ======================================================
-library(ggplot2)
-library(cowplot)
-library(GenomicRanges)
-library(glue)
-library(RJSONIO)
-library(tidyverse)
-library(rtracklayer)
-library(ComplexHeatmap)
-library(reshape2)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("GenomicRanges", "rtracklayer", "ComplexHeatmap")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("ggplot2", "cowplot", "GenomicRanges", "glue", "RJSONIO", 
+              "tidyverse", "rtracklayer", "ComplexHeatmap", "reshape2")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(cowplot)
+  library(GenomicRanges)
+  library(glue)
+  library(RJSONIO)
+  library(tidyverse)
+  library(rtracklayer)
+  library(ComplexHeatmap)
+  library(reshape2)
+})
 
 # Source Required Scripts ======================================================
-source("/dcs05/hongkai/data/next_cutntag/script/peak_annotation/scripts_for_manuscript_v2/CCREUtils.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/utils.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/filter_targets.R")
+source("../hiplex_paper/peak_annotation/CCREUtils.R")
+source("../hiplex_paper/utils.R")
 
 # Parse Command Line Arguments =================================================
 options <- commandArgs(trailingOnly = TRUE)
@@ -340,11 +360,8 @@ p_chromhmm_group <- plotAnnoBar.data.frame.one.target(
   guides(fill = guide_legend(title = NULL, nrow = 5, reverse = TRUE))
 
 # Load Promoter Data ===========================================================
-promoter_range <- "0-0"
 
-promoter_file <- glue(
-  "/dcs05/hongkai/data/next_cutntag/bulk/RNA-seq/ccre_region/promoter_-{promoter_range}.tsv"
-)
+promoter_file <- glue("../data/peak_annotation/promoter_-0-0.tsv")
 promoter_table <- read.table(promoter_file, sep = "\t", header = TRUE)
 promoter_table$seqnames <- paste0("chr", promoter_table$seqnames)
 
@@ -358,7 +375,7 @@ promoter_grange <- makeGRangesFromDataFrame(
 )
 
 # Load RNA-seq Data ============================================================
-rnaseq_dir_filename <- "/dcs05/hongkai/data/next_cutntag/bulk/RNA-seq/RNA_seq_TPM_all.csv"
+rnaseq_dir_filename <- "../data/peak_annotation/RNA_seq_TPM_all.csv"
 rnaseq_raw <- read.table(
   rnaseq_dir_filename,
   sep = ",",
@@ -380,7 +397,7 @@ rnaseq$V <- log10(rnaseq$V + 1)
 rnaseq$T <- log10(rnaseq$T + 1)
 
 # Load Differential Expression Data ============================================
-diff_rnaseq_dir_filename <- "/dcs05/hongkai/data/next_cutntag/bulk/RNA-seq/diff_expr_all_update.csv"
+diff_rnaseq_dir_filename <- "../data/peak_annotation/diff_expr_all_update.csv"
 rnaseq_diff <- read.table(
   diff_rnaseq_dir_filename,
   sep = ",",
@@ -663,10 +680,7 @@ if (is_grouped_df_plot == TRUE) {
 }
 
 # Load Gene Selection Data =====================================================
-gene_select_dir <- "/dcs05/hongkai/data/next_cutntag/bulk/dna_methylation/cpg_island"
-gene_select_filename <- "gene_categories.json"
-gene_select_dir_filename <- file.path(gene_select_dir, gene_select_filename)
-gene_select_dict <- fromJSON(gene_select_dir_filename)
+gene_select_dict <- fromJSON("../data/peak_annotation/gene_categories.json")
 
 # Calculate Gene Overlaps Between Clusters =====================================
 set1s <- c()

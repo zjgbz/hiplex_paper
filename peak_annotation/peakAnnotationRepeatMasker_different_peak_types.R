@@ -1,15 +1,15 @@
-source("/dcs05/hongkai/data/next_cutntag/script/peak_annotation/scripts_for_manuscript_v2/CCREUtils.R")
+source("../hiplex_paper/peak_annotation/CCREUtils.R")
 library(glue)
 
 args <- commandArgs(trailingOnly = TRUE)
 # peakType <- args[1]
 # print(peakType)
 # peakDir <- glue("/dcs05/hongkai/data/next_cutntag/bulk/homotone_heterotone_merged/peak/{peakType}/")
-
 peakDir <- args[1]
 outDir <- args[2]
 print(peakDir)
 print(outDir)
+scens <- c("V")
 
 tags <- c("H3K36me3", "H3K4me1", "H3K27ac", "H3S10ph", "H2A_XS139ph", "H3K79me3", "H3K9me2",
           "H3K9me3", "H3K14ac", "H3K27me3", "H3K4me3", "SETD2", "MLL4_MLL2_KMT2B", "CBP_CREBBP",

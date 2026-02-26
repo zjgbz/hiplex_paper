@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# module load conda_R  # 本地不需要
-# module load anaconda3/2023.09  # 本地不需要，确保本地有 python 环境
+# module load conda_R  # not necessary for local
+# module load anaconda3/2023.09  # ensure local has python environment
 
 cell_reads_thres_list=( "0" "1" )
 
@@ -40,7 +40,6 @@ do
 	target_pair_avail_filename="target_pair_avail_cell_reads_thres-${cell_reads_thres}_region_all_coexp_num_thres-1.tsv"
 	target_pair_avail_dir_filename="${target_pair_avail_dir}/${target_pair_avail_filename}"
 
-	# 本地运行：用 for 循环代替 sbatch --array=2-9,199-207,305-312
 	for task_id in $(seq 2 9) $(seq 199 207) $(seq 305 312)
 	do
 		echo "Running task_id=${task_id}, cell_reads_thres=${cell_reads_thres}"

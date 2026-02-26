@@ -6,27 +6,50 @@
 # ==============================================================================
 
 # Load Required Libraries ======================================================
-library(ggplot2)
-library(ChIPseeker)
-library(dplyr)
-library(ComplexHeatmap)
-library(grid)
-library(gridExtra)
-library(GenomicRanges)
-library(data.table)
-library(TxDb.Hsapiens.UCSC.hg38.knownGene)
-library(tools)
-library(stringr)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("ChIPseeker", "ComplexHeatmap", "GenomicRanges", 
+                       "TxDb.Hsapiens.UCSC.hg38.knownGene")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("ggplot2", "ChIPseeker", "dplyr", "ComplexHeatmap", "grid", 
+              "gridExtra", "GenomicRanges", "data.table", 
+              "TxDb.Hsapiens.UCSC.hg38.knownGene", "tools", "stringr")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(ChIPseeker)
+  library(dplyr)
+  library(ComplexHeatmap)
+  library(grid)
+  library(gridExtra)
+  library(GenomicRanges)
+  library(data.table)
+  library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+  library(tools)
+  library(stringr)
+})
 
 # Source utilities and load reference database
-source("/dcs05/hongkai/data/next_cutntag/script/peak_annotation/scripts_for_manuscript_v2/plotUtils.R")
+source("../hiplex_paper/peak_annotation/plotUtils.R")
 txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
 # Annotation File Paths ========================================================
-annotationFile <- "/dcl02/hongkai/data/kyu/multitag_scripts/scripts_peakAnnotation/ccre_annotation/annotation_data/ENCFF414OGC_ENCFF806YEZ_ENCFF849TDM_ENCFF736UDR.7group.bed"
-annotation_celltype_agnostic_file <- "/dcl02/hongkai/data/kyu/multitag_scripts/scripts_peakAnnotation/ccre_annotation/annotation_data/GRCh38-cCREs.bed"
-annotationFileChromHMM <- "/dcl02/hongkai/data/kyu/multitag_scripts/scripts_peakAnnotation/chromHMM_annotation/annotation_data/hg38_genome_100_segments.bed"
-annotationFileRepeatMasker <- "/dcl02/hongkai/data/kyu/multitag_scripts/scripts_peakAnnotation/repeatMasker_annotation/annotation_data/hg38.fa.out"
+annotationFile <- "../data/peak_annotation/ENCFF414OGC_ENCFF806YEZ_ENCFF849TDM_ENCFF736UDR.7group.bed"
+annotation_celltype_agnostic_file <- "../data/peak_annotation/GRCh38-cCREs.bed"
+annotationFileChromHMM <- "../data/peak_annotation/hg38_genome_100_segments.bed"
+annotationFileRepeatMasker <- "../data/peak_annotation/hg38.fa.out"
 
 # Load and Process CCRE Annotations ===========================================
 
@@ -99,9 +122,7 @@ replace_strings <- function(strings, replacement_df) {
 }
 
 # Load ChromHMM state annotations and create replacement mapping
-ChromHMM_state <- read.csv(
-  "/dcs05/hongkai/data/next_cutntag/script/peak_annotation/utils/state_annotations_processed.csv"
-)
+ChromHMM_state <- read.csv("../data/peak_annotation/state_annotations_processed.csv")
 
 replacement_df <- ChromHMM_state[, c("mneumonics", "Group")]
 colnames(replacement_df) <- c("original", "replacement")
@@ -120,9 +141,7 @@ annotationChromHMM$V4 <- gsub("_", "", annotationChromHMM$V4)
 categoriesChromHMM <- unique(annotationChromHMM$V4)
 
 # Load RepeatMasker Annotations ================================================
-annotationRepeatMasker <- readRDS(
-  "/dcl02/hongkai/data/kyu/multitag_scripts/scripts_peakAnnotation/repeatMasker_annotation/annotation_data/repeatmasker.rds"
-)
+annotationRepeatMasker <- readRDS("../data/peak_annotation/repeatmasker.rds")
 
 # Configuration ================================================================
 ignoreCTCFBound <- TRUE

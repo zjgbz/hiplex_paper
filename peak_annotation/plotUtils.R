@@ -8,13 +8,34 @@
 # ==============================================================================
 
 # Load Required Libraries ======================================================
-library(ggplot2)
-library(ChIPseeker)
-library(dplyr)
-library(ComplexHeatmap)
-library(grid)
-library(stats)
-library(latex2exp)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("ChIPseeker", "ComplexHeatmap")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("ggplot2", "ChIPseeker", "dplyr", "ComplexHeatmap", 
+              "grid", "stats", "latex2exp")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(ChIPseeker)
+  library(dplyr)
+  library(ComplexHeatmap)
+  library(grid)
+  library(stats)
+  library(latex2exp)
+})
 
 # Define Feature Categories ====================================================
 

@@ -8,23 +8,44 @@
 # ==============================================================================
 
 # Load Required Libraries ======================================================
-library(ggplot2)
-library(ChIPseeker)
-library(dplyr)
-library(ComplexHeatmap)
-library(grid)
-library(gridExtra)
-library(GenomicRanges)
-library(stats)
-library(ggrepel)
-library(glue)
-library(dendextend)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("ChIPseeker", "ComplexHeatmap", "GenomicRanges")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("ggplot2", "ChIPseeker", "dplyr", "ComplexHeatmap", "grid", 
+              "gridExtra", "GenomicRanges", "stats", "ggrepel", "glue", 
+              "dendextend")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(ChIPseeker)
+  library(dplyr)
+  library(ComplexHeatmap)
+  library(grid)
+  library(gridExtra)
+  library(GenomicRanges)
+  library(stats)
+  library(ggrepel)
+  library(glue)
+  library(dendextend)
+})
 
 # Source Required Scripts ======================================================
-source("/dcs05/hongkai/data/next_cutntag/script/peak_annotation/scripts_for_manuscript_v2/plotUtils.R")
-source("/dcs05/hongkai/data/next_cutntag/script/peak_annotation/scripts_for_manuscript_v2/CCREUtils.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/map_target_pair_names.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/filter_targets.R")
+source("../hiplex_paper/peak_annotation/plotUtils.R")
+source("../hiplex_paper/peak_annotation/CCREUtils.R")
+source("../hiplex_paper/utils.R")
 
 # Configuration ================================================================
 filtered <- TRUE

@@ -9,18 +9,36 @@
 # ==============================================================================
 
 # Load Required Libraries ======================================================
-library(ggplot2)
-library(cowplot)
-library(ComplexHeatmap)
-library(glue)
-library(grid)
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    # Bioconductor packages
+    bioc_packages <- c("ComplexHeatmap")
+    if (pkg %in% bioc_packages) {
+      if (!requireNamespace("BiocManager", quietly = TRUE)) {
+        install.packages("BiocManager")
+      }
+      BiocManager::install(pkg)
+    } else {
+      install.packages(pkg)
+    }
+  }
+}
+
+packages <- c("ggplot2", "cowplot", "ComplexHeatmap", "glue", "grid")
+lapply(packages, install_if_missing)
+
+suppressPackageStartupMessages({
+  library(ggplot2)
+  library(cowplot)
+  library(ComplexHeatmap)
+  library(glue)
+  library(grid)
+})
 
 # Source Required Scripts ======================================================
-source("/dcs05/hongkai/data/next_cutntag/script/peak_annotation/scripts_for_manuscript_v2/CCREUtils.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/utils.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/filter_targets.R")
-source("/dcs05/hongkai/data/next_cutntag/script/utils/map_target_pair_names.R")
-source("/dcs05/hongkai/data/next_cutntag/script/dna_methylation/calculate_methylation_percentage.R")
+source("../hiplex_paper/peak_annotation/CCREUtils.R")
+source("../hiplex_paper/utils.R")
+source("../hiplex_paper/peak_annotation/calculate_methylation_percentage.R")
 
 # Parse Command Line Arguments =================================================
 args <- commandArgs(trailingOnly = TRUE)
