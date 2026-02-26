@@ -37,7 +37,7 @@ Make sure you are in the `hiplex_paper`directory:
 ## How to Run
 Run in terminal:
 
-`bash differential_analysis/run_differential_analysis.sh` (approximately less than 1 hour)
+`bash differential_analysis/run_differential_analysis.sh` (approximately 1 hour)
 
 Suggests request 256G
 
@@ -50,10 +50,7 @@ The expected output directory is:
 Within this directory, you will find 
 
 - `column_cluster_fig/` — Figures:
-  - `limma_post-limmanorm_..._column_cluster-{cluster_id}_MA_plot.pdf` — MA plots per cluster.
-  - `limma_post-limmanorm_..._column_cluster-{cluster_id}_significance_plot.pdf` — P-value/FDR histograms per cluster.
+  - `diff_heatmap_col_cluster_....._limmanorm-manually.pdf` - Heatmap
   - `scatter_{cluster_id}_5000_l2fc-0.5.pdf` — Scatter plots of Hi-Plex log2FC vs gene expression log2FC.
-  - `publish_heatmap_..._column_cluster-{cluster_id}_limma_FDR-0.25_logFC-0.5_legend-on_colnames-on.pdf` — Heatmaps of significant regions.
-  - `summary_sig_num_0.25_0.25_l2fc-0.5.pdf` — Bar plot of significant region counts per cluster.
 
 Note: Refers to Figure S5 in Paper

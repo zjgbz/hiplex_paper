@@ -36,3 +36,7 @@ Rscript ../hiplex_paper/differential_analysis/summary_sig_num_barplot_single_cas
     ${read_dir} \
     ${out_dir}
 
+Rscript ../hiplex_paper/differential_analysis/diff_heatmap_colcluster_equal_width.R \
+    ${read_dir} \
+    ${out_dir}
+

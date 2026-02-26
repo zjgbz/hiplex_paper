@@ -53,7 +53,7 @@ promoter_grange <- makeGRangesFromDataFrame(promoter_table, seqnames.field = "se
 
 
 save_dir <- paste0(out_dir, "/column_cluster_fig")
-dir.create(save_dir, recursive = TRUE)
+dir.create(save_dir, recursive = TRUE, showWarnings = FALSE)
 plts <- list()
 ylim_top <- 7
 ylim_bottom <- -4
@@ -61,7 +61,9 @@ xlim_top <- 3
 xlim_bottom <- -3
 
 # cluster_id_list = c(1:8, 10:15)
-cluster_id_list = c(1, 12)
+# cluster_id_list = c(1, 12)
+cluster_id_list = c(1:15)
+
 load_dir = paste0(out_dir, "/column_cluster_result")
 
 l2fc_thres = 0.5

@@ -159,3 +159,37 @@ map_target_names <- function(target_pair_list, target_pair_mapping_df, from = "t
 }
 
 gamma_utf8 <- "\u03FF"
+
+# Define a helper function to create a small dataframe for one group.
+get_cluster_df <- function(df, prefix) {
+  # Get the column names from the given dataframe.
+  original_names <- colnames(df)
+  
+  # Create a dataframe with:
+  # - "feature": prefixed column names, e.g. "V1:colName"
+  # - "label": the prefix (group label)
+  # - "nonprefix": the original column names (to help with ordering)
+  data.frame(
+    feature    = paste0(prefix, ":", original_names),
+    label      = prefix,
+    nonprefix  = original_names,
+    stringsAsFactors = FALSE
+  )
+}
+
+calc_ht_size = function(ht, unit = "inch", show_annotation_legend=FALSE, column_title=NULL, column_title_fontsize=14) {
+	pdf(NULL)
+    if (show_annotation_legend) {
+        ht = draw(ht, background = "transparent", column_title=column_title, column_title_gp = gpar(fontsize=column_title_fontsize), merge_legend = TRUE, annotation_legend_side = "top")
+    } else {
+        ht = draw(ht, background = "transparent", column_title=column_title, column_title_gp = gpar(fontsize=column_title_fontsize), show_annotation_legend = FALSE)
+    }
+	ht = draw(ht, background = "transparent", column_title=column_title, column_title_gp = gpar(fontsize=column_title_fontsize))
+	w = ComplexHeatmap:::width(ht)
+	w = convertX(w, unit, valueOnly = TRUE)
+	h = ComplexHeatmap:::height(ht)
+	h = convertY(h, unit, valueOnly = TRUE)
+	dev.off()
+
+	c(w, h)
+}

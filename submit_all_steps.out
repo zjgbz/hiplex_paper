@@ -16,81 +16,6 @@ NULL
 [[6]]
 NULL
 
-column cluster: 1, df: 844110, original: 3860350, filtered: 545825, second filtered: 422055
-column cluster: 1, sig regions: 27479
-column cluster: 1, sig regions: 9522
-column cluster: 2, df: 69242, original: 3860350, filtered: 45920, second filtered: 34621
-column cluster: 2, sig regions: 898
-column cluster: 2, sig regions: 113
-column cluster: 3, df: 22398, original: 3860350, filtered: 14482, second filtered: 11199
-column cluster: 3, sig regions: 456
-column cluster: 3, sig regions: 61
-column cluster: 4, df: 3.36253700509597, original: 3860350, filtered: 66832, second filtered: 66832
-column cluster: 4, sig regions: 32045
-column cluster: 4, sig regions: 23325
-column cluster: 5, df: 5.54591329378736, original: 3860350, filtered: 43415, second filtered: 43415
-column cluster: 5, sig regions: 6660
-column cluster: 5, sig regions: 0
-Will not save for cluster 5!
-column cluster: 6, df: 3.91551131493823, original: 3860350, filtered: 196535, second filtered: 154416
-column cluster: 6, sig regions: 37140
-column cluster: 6, sig regions: 0
-Will not save for cluster 6!
-column cluster: 7, df: 2.34896687080578, original: 3860350, filtered: 27264, second filtered: 27264
-column cluster: 7, sig regions: 15088
-column cluster: 7, sig regions: 2862
-column cluster: 8, df: 2.63893391724223, original: 3860350, filtered: 25049, second filtered: 25049
-column cluster: 8, sig regions: 11265
-column cluster: 8, sig regions: 5786
-column cluster: 9, df: 4.08891192276518, original: 3860350, filtered: 117976, second filtered: 117976
-column cluster: 9, sig regions: 0
-Will not save for cluster 9!
-column cluster: 9, sig regions: 0
-Will not save for cluster 9!
-column cluster: 10, df: 5.12471409991732, original: 3860350, filtered: 693571, second filtered: 580546
-column cluster: 10, sig regions: 120829
-column cluster: 10, sig regions: 0
-Will not save for cluster 10!
-column cluster: 11, df: 2010932, original: 3860350, filtered: 1239885, second filtered: 1005466
-column cluster: 11, sig regions: 889
-column cluster: 11, sig regions: 82
-column cluster: 12, df: 488302, original: 3860350, filtered: 321760, second filtered: 244151
-column cluster: 12, sig regions: 22839
-column cluster: 12, sig regions: 3705
-column cluster: 13, df: 4.32028181476171, original: 3860350, filtered: 222212, second filtered: 177148
-column cluster: 13, sig regions: 32860
-column cluster: 13, sig regions: 0
-Will not save for cluster 13!
-column cluster: 14, df: 2.81015309899963, original: 3860350, filtered: 32348, second filtered: 32348
-column cluster: 14, sig regions: 16667
-column cluster: 14, sig regions: 12103
-column cluster: 15, df: 4.21468584358239, original: 3860350, filtered: 192213, second filtered: 146410
-column cluster: 15, sig regions: 27567
-column cluster: 15, sig regions: 0
-Will not save for cluster 15!
-column cluster: 16, df: 5.70281560503296, original: 3860350, filtered: 375183, second filtered: 308900
-column cluster: 16, sig regions: 0
-Will not save for cluster 16!
-column cluster: 16, sig regions: 0
-Will not save for cluster 16!
-[[1]]
-NULL
-
-[[2]]
-NULL
-
-[[3]]
-NULL
-
-[[4]]
-NULL
-
-[[5]]
-NULL
-
-[[6]]
-NULL
-
 [[7]]
 NULL
 
@@ -109,50 +34,29 @@ NULL
 [[12]]
 NULL
 
-[[1]]
+[[13]]
 NULL
 
-[[2]]
+[[14]]
 NULL
 
-[[3]]
+[[15]]
 NULL
 
-[[4]]
+[[16]]
 NULL
 
-[[5]]
-NULL
-
-[[6]]
-NULL
-
-[[7]]
-NULL
-
-[[8]]
-NULL
-
-method: limma, fdr_thres: 0.25, cluster_idx: 1 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 2 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 3 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 4 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 5 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 6 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 7 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 8 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 10 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 11 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 12 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 13 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 14 completed!
-method: limma, fdr_thres: 0.25, cluster_idx: 15 completed!
-[[1]]
-NULL
-
-[[2]]
-NULL
-
-[[3]]
-NULL
-
+cluster_idx: 1; 27479
+cluster_idx: 2; 898
+cluster_idx: 3; 456
+cluster_idx: 4; 32045
+cluster_idx: 5; 6660
+cluster_idx: 6; 37140
+cluster_idx: 7; 15088
+cluster_idx: 8; 11265
+cluster_idx: 10; 120829
+cluster_idx: 11; 889
+cluster_idx: 12; 22839
+cluster_idx: 13; 32860
+cluster_idx: 14; 16667
+cluster_idx: 15; 27567
