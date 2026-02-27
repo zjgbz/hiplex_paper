@@ -6,6 +6,25 @@ Hyperparameter search for gene expression prediction models.
 Grid search for Random Forest and Linear Regression models.
 """
 
+import subprocess
+import sys
+
+def install_if_missing(package):
+    try:
+        __import__(package)
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+packages = {
+    "numpy": "numpy",
+    "pandas": "pandas",
+    "pyarrow": "pyarrow",
+    "sklearn": "scikit-learn",
+}
+
+for import_name, pip_name in packages.items():
+    install_if_missing(import_name)
+
 import argparse
 import json
 import multiprocessing
@@ -19,7 +38,6 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.pipeline import Pipeline
-
 
 def load_json(filepath):
     """Load JSON file."""
@@ -149,10 +167,10 @@ def main():
     gene_select_name = "coding_all"
     
     # Paths
-    gene_select_dir = "/dcs05/hongkai/data/next_cutntag/bulk/dna_methylation/cpg_island"
-    rnaseq_dir = "/dcs05/hongkai/data/next_cutntag/bulk/RNA-seq"
-    wgc_root_dir = "/dcs05/hongkai/data/next_cutntag/bulk/wgc"
-    output_dir = f'/dcs05/hongkai/data/next_cutntag/script/explainability/{model_design}'
+    gene_select_dir = "../data/gene_expression_prediction_model/cpg_island"
+    rnaseq_dir = "../data/gene_expression_prediction_model/RNA-seq"
+    wgc_root_dir = "../data/gene_expression_prediction_model/wgc"
+    output_dir = f'../results/Figure4_5/{model_design}'
     
     os.makedirs(output_dir, exist_ok=True)
     
@@ -165,10 +183,10 @@ def main():
     
     # Load cutoffs and features
     rnaseq_cutoffs = load_json(
-        "/dcs05/hongkai/data/next_cutntag/bulk/explainability/rnaseq_hiplex_cutoff.json"
+        "../data/gene_expression_prediction_model/rnaseq_hiplex_cutoff.json"
     )
     features = load_json(
-        '/dcs05/hongkai/data/next_cutntag/script/utils/filtered_target_pairs.json'
+        '../data/gene_expression_prediction_model/filtered_target_pairs.json'
     )
     
     # Load RNA-seq data

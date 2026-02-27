@@ -41,7 +41,9 @@ Make sure you are in the `hiplex_paper` directory:
 ## How to Run
 Run in terminal:
 
-`bash peak_annotation/run_peak_annotation.sh`
+`bash peak_annotation/run_peak_annotation.sh` (approximately 1 hour)
+
+Suggests request 64G
 
 This executes the following steps:
 
@@ -60,18 +62,7 @@ The expected output directory is:
 
 Within this directory, you will find:
 
-- `bicluster_....pdf` — Combined annotation bar plots (CCRE, ChromHMM) and RNA expression boxplots per bicluster.
-- `Chipseeker/` — ChIPseeker + CCRE annotation results:
-  - `annotate.rds` — Raw annotation results per target pair.
-  - `CCRE_anno_V_clustered.pdf` — Hierarchically clustered CCRE annotation bar plot.
-  - `CCRE_anno_V_clustered.csv` — Annotation data in tabular form.
-  - `CCRE_anno_V_order.rds` — Clustering order used by downstream scripts.
-  - `dend.pdf` — Dendrogram of hierarchical clustering.
-- `RepeatMasker/` — RepeatMasker annotation results:
-  - `annotate.rds` — Raw annotation results per target pair.
-  - `repeatMasker_anno_V_clustered.pdf` — Clustered RepeatMasker annotation bar plot.
-  - `repeatMasker_anno_V_clustered.csv` — Annotation data in tabular form.
-- `summary.pdf` — Combined figure with CCRE, RepeatMasker, and DNA methylation violin plots.
-- `plt_data_V_summary.rds` — Methylation level data per target pair.
+- `bicluster_....pdf` — Combined annotation bar plots (CCRE, ChromHMM) and RNA expression boxplots per bicluster. (Figure 3B)
+- `summary.pdf` — Combined figure with CCRE, RepeatMasker, and DNA methylation violin plots. (Figure 2C)
 
 Note: Refers to Figures 2C and 3B in the paper.

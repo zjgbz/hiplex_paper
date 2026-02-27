@@ -56,13 +56,13 @@ args <- commandArgs(trailingOnly = TRUE)
 dataPeakAnnoDir <- args[1]
 new_order_dir <- args[2]
 out_dir <- args[3]
-print(peak_type)
+# print(peak_type)
 
 # Load RepeatMasker Annotation Data ============================================
 # dataPeakAnnoDir <- glue(
 #   "/dcl02/hongkai/data/kyu/multitag_scripts/data_peakAnnotate/repeatMasker/{peak_type}/V/"
 # )
-rdsFileV <- paste0(dataPeakAnnoDir, "annotate.rds")
+rdsFileV <- paste0(dataPeakAnnoDir, "/annotate.rds")
 xV <- readRDS(rdsFileV)
 
 # Create Output Directory ======================================================

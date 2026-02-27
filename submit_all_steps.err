@@ -1,13 +1,13 @@
 Loading conda_R/4.4
-The automatically generated colors map from the 1^st and 99^th of the
-values in the matrix. There are outliers in the matrix whose patterns
-might be hidden by this color mapping. You can manually set the color
-to `col` argument.
+Unloading conda_R/4.4
+Loading conda_R/4.4
 
-Use `suppressMessages()` to turn off this message.
-The automatically generated colors map from the 1^st and 99^th of the
-values in the matrix. There are outliers in the matrix whose patterns
-might be hidden by this color mapping. You can manually set the color
-to `col` argument.
-
-Use `suppressMessages()` to turn off this message.
+Warning message:
+`aes_string()` was deprecated in ggplot2 3.0.0.
+ℹ Please use tidy evaluation idioms with `aes()`.
+ℹ See also `vignette("ggplot2-in-packages")` for more information. 
+Warning message:
+The input is a data frame-like object, convert it to a matrix. 
+Warning message:
+`is.ggplot()` was deprecated in ggplot2 3.5.2.
+ℹ Please use `is_ggplot()` instead. 

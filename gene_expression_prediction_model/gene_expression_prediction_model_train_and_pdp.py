@@ -5,6 +5,26 @@
 Model training and partial dependence plot generation for gene expression prediction.
 """
 
+import subprocess
+import sys
+
+def install_if_missing(package):
+    try:
+        __import__(package)
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+packages = {
+    "numpy": "numpy",
+    "pandas": "pandas",
+    "pyarrow": "pyarrow",
+    "scipy": "scipy",
+    "sklearn": "scikit-learn",
+}
+
+for import_name, pip_name in packages.items():
+    install_if_missing(import_name)
+
 import argparse
 import json
 import multiprocessing
@@ -20,7 +40,6 @@ from sklearn.inspection import partial_dependence
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import root_mean_squared_error
 from sklearn.model_selection import train_test_split
-
 
 def parse_arguments():
     """Parse command line arguments."""
@@ -186,10 +205,10 @@ def main():
     gene_select_name = "coding_all"
     
     # Paths
-    gene_select_dir = "/dcs05/hongkai/data/next_cutntag/bulk/dna_methylation/cpg_island"
-    rnaseq_dir = "/dcs05/hongkai/data/next_cutntag/bulk/RNA-seq"
-    wgc_root_dir = "/dcs05/hongkai/data/next_cutntag/bulk/wgc"
-    save_dir = f"/dcs05/hongkai/data/next_cutntag/bulk/explainability/{model_design}/{random_seed}"
+    gene_select_dir = "../data/gene_expression_prediction_model/cpg_island"
+    rnaseq_dir = "../data/gene_expression_prediction_model/RNA-seq"
+    wgc_root_dir = "../data/gene_expression_prediction_model/wgc"
+    save_dir = f"../results/Figure4_5/{model_design}/{random_seed}"
     
     os.makedirs(save_dir, exist_ok=True)
     
@@ -202,10 +221,10 @@ def main():
     
     # Load cutoffs and features
     rnaseq_cutoffs = load_json(
-        "/dcs05/hongkai/data/next_cutntag/bulk/explainability/rnaseq_hiplex_cutoff.json"
+        "../data/gene_expression_prediction_model/rnaseq_hiplex_cutoff.json"
     )
     features = load_json(
-        '/dcs05/hongkai/data/next_cutntag/script/utils/filtered_target_pairs.json'
+        '../data/gene_expression_prediction_model/filtered_target_pairs.json'
     )
     
     # Load RNA-seq data
@@ -236,7 +255,7 @@ def main():
     print(f"Dataset shape: {X_all.shape}\n")
     
     # Load models
-    model_params_file = f'/dcs05/hongkai/data/next_cutntag/script/explainability/{model_design}/{gene_select_name}.json'
+    model_params_file = f'../results/Figure4_5/{model_design}/{gene_select_name}.json'
     models = load_models(model_params_file, gene_select_name, random_seed)
     
     # Train and evaluate models

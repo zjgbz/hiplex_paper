@@ -268,7 +268,7 @@ dir.create(
 )
 saveRDS(
   plt_data,
-  glue("{out_dir}}/plt_data_V_summary.rds")
+  glue("{out_dir}/plt_data_V_summary.rds")
 )
 
 # Filter and order methylation data

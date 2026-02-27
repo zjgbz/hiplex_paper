@@ -60,8 +60,15 @@ out_dir <- args[2]
 # CCREPeakAnnoDir <- glue(
 #   "/dcl02/hongkai/data/kyu/multitag_scripts/data_peakAnnotate/ChIPSeeker_CCRE/{peak_type}/V/"
 # )
-CCRErdsFileV <- paste0(CCREPeakAnnoDir, "annotate.rds")
+CCRErdsFileV <- paste0(CCREPeakAnnoDir, "/annotate.rds")
 CCRExV <- readRDS(CCRErdsFileV)
+CCRExV <- Filter(function(x) is(x, "csCCREAnno"), CCRExV)
+CCREannoV <- lapply(CCRExV, getAnnoStatCCRE)
+
+if (filtered) {
+  filteredTags <- intersect(filter_target_pairs(), names(CCREannoV))
+  CCREannoV <- CCREannoV[filteredTags]
+}
 
 # Extract Annotation Statistics ================================================
 CCREannoV <- lapply(CCRExV, getAnnoStatCCRE)
@@ -229,14 +236,14 @@ gpV <- plotAnnoBar.data.frame(
 # Save annotation data as CSV
 write.csv(
   CCREannoV.df,
-  paste0(out_dir, "CCRE_anno_V_clustered.csv"),
+  paste0(out_dir, "/CCRE_anno_V_clustered.csv"),
   row.names = FALSE,
   quote = FALSE
 )
 
 # Save plot as PDF
 pdf(
-  paste0(out_dir, "CCRE_anno_V_clustered.pdf"),
+  paste0(out_dir, "/CCRE_anno_V_clustered.pdf"),
   height = 140,
   width = 20
 )
@@ -244,7 +251,7 @@ print(gpV)
 dev.off()
 
 # Save ordering for future use
-saveRDS(new_order, paste0(out_dir, "CCRE_anno_V_order.rds"))
+saveRDS(new_order, paste0(out_dir, "/CCRE_anno_V_order.rds"))
 
 cat("Analysis complete. Results saved to:", out_dir, "\n")
 

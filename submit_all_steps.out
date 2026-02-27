@@ -25,38 +25,1726 @@ NULL
 [[9]]
 NULL
 
-[[10]]
+[1] "../data/peak_annotation/bicluster_V_mixed_all-qc_kmeans_euclidean_row_num-15_column_num-16_heatmap_row_clusters_extend_sparsity-10_cor_quantile-0.75_no_sparse.tsv"
+[1] "../results/Figrue2C_3B/bicluster_V_mixed_all-qc_kmeans_euclidean_row_num-15_column_num-16_heatmap_row_clusters_extend_sparsity-10_cor_quantile-0.75_no_sparse.pdf"
+    .id       Feature    Frequency
+1     A     CTCF-only  0.376970528
+2     A          dELS  5.243317341
+3     A DNase-H3K4me3  6.442769020
+4     A    DNase-only  0.411240576
+5     A     Low-DNase  9.115832762
+6     A          pELS 25.873886223
+7     A           PLS 42.460589445
+8     A        5' UTR  0.102810144
+9     A        3' UTR  1.165181631
+10    A          Exon  2.844413982
+11    A        Intron  5.209047293
+12    A         other  0.753941056
+13    B     CTCF-only  0.440528634
+14    B          dELS  3.768967205
+15    B DNase-H3K4me3  2.202643172
+16    B    DNase-only  0.097895252
+17    B     Low-DNase 14.977973568
+18    B          pELS 35.633871757
+19    B           PLS 26.138032305
+20    B        5' UTR  0.587371512
+21    B        3' UTR  2.104747920
+22    B          Exon  3.671071953
+23    B        Intron  8.859520313
+24    B         other  1.517376407
+25    C     CTCF-only  0.137268360
+26    C          dELS  4.564172958
+27    C DNase-H3K4me3  1.818805765
+28    C    DNase-only  0.308853809
+29    C     Low-DNase 12.903225806
+30    C          pELS 41.214824983
+31    C           PLS 27.968428277
+32    C        5' UTR  0.205902539
+33    C        3' UTR  0.754975978
+34    C          Exon  2.436513384
+35    C        Intron  6.382978723
+36    C         other  1.304049417
+37    D     CTCF-only  0.190799237
+38    D          dELS  3.635785457
+39    D DNase-H3K4me3  3.381386474
+40    D    DNase-only  0.275598898
+41    D     Low-DNase 19.927920288
+42    D          pELS 42.156031376
+43    D           PLS 16.631333475
+44    D        5' UTR  0.211999152
+45    D        3' UTR  0.858596566
+46    D          Exon  2.215391138
+47    D        Intron  8.585965656
+48    D         other  1.929192283
+49    E     CTCF-only  0.341180484
+50    E          dELS  4.708290686
+51    E DNase-H3K4me3  0.443534630
+52    E    DNase-only  0.716479017
+53    E     Low-DNase 13.237802798
+54    E          pELS 36.642784033
+55    E           PLS 16.308427158
+56    E        5' UTR  0.545888775
+57    E        3' UTR  1.978846810
+58    E          Exon  3.275332651
+59    E        Intron 18.491982259
+60    E         other  3.309450699
+61    F          dELS  3.690149436
+62    F DNase-H3K4me3  2.195791400
+63    F    DNase-only  0.121988411
+64    F     Low-DNase 14.059164379
+65    F          pELS 41.933516316
+66    F           PLS 29.673681000
+67    F        5' UTR  0.243976822
+68    F        3' UTR  0.518450747
+69    F          Exon  1.677340653
+70    F        Intron  5.032021958
+71    F         other  0.853918878
+72    G     CTCF-only  2.231064374
+73    G          dELS  2.259485576
+74    G DNase-H3K4me3  0.667898252
+75    G    DNase-only  2.572118801
+76    G     Low-DNase 22.893278386
+77    G          pELS  2.671593008
+78    G           PLS  1.179479892
+79    G        5' UTR  0.923689072
+80    G        3' UTR 12.093221543
+81    G          Exon  8.796362086
+82    G        Intron 28.946994458
+83    G         other 14.764814552
+84    H     CTCF-only  1.377334073
+85    H          dELS 12.257348863
+86    H DNase-H3K4me3  0.794971344
+87    H    DNase-only  3.873174339
+88    H     Low-DNase 12.331299686
+89    H          pELS  5.879090405
+90    H           PLS  0.757995933
+91    H        5' UTR  0.693288963
+92    H        3' UTR  3.734516546
+93    H          Exon  6.563135515
+94    H        Intron 45.978924016
+95    H         other  5.758920318
+96    I     CTCF-only  0.171428571
+97    I          dELS 14.285714286
+98    I DNase-H3K4me3  1.714285714
+99    I    DNase-only  0.742857143
+100   I     Low-DNase 10.228571429
+101   I          pELS 23.028571429
+102   I           PLS  7.771428571
+103   I        5' UTR  0.571428571
+104   I        3' UTR  2.628571429
+105   I          Exon  5.657142857
+106   I        Intron 31.028571429
+107   I         other  2.171428571
+108   J     CTCF-only  1.444845790
+109   J          dELS  1.917199222
+110   J DNase-H3K4me3  0.361211448
+111   J    DNase-only  1.055848847
+112   J     Low-DNase 17.838288413
+113   J          pELS  1.694915254
+114   J           PLS  2.778549597
+115   J        5' UTR  0.222283968
+116   J        3' UTR  2.889691581
+117   J          Exon  8.224506807
+118   J        Intron 36.148930258
+119   J         other 25.423728814
+120   K     CTCF-only  0.828580652
+121   K          dELS  0.441192295
+122   K DNase-H3K4me3  0.215215754
+123   K    DNase-only  0.645647261
+124   K     Low-DNase 15.882922630
+125   K          pELS  0.215215754
+126   K           PLS  0.376627569
+127   K        5' UTR  0.559560960
+128   K        3' UTR  3.335844184
+129   K          Exon  7.457225869
+130   K        Intron 32.476057247
+131   K         other 37.565909825
+132   L     CTCF-only  1.594710229
+133   L          dELS  0.291715286
+134   L DNase-H3K4me3  0.632049786
+135   L    DNase-only  1.021003501
+136   L     Low-DNase 24.222092571
+137   L          pELS  0.155581486
+138   L           PLS  1.030727343
+139   L        5' UTR  0.612602100
+140   L        3' UTR  3.821470245
+141   L          Exon 10.161415792
+142   L        Intron 37.183975107
+143   L         other 19.272656554
+144   M     CTCF-only  1.667307939
+145   M          dELS  0.102603565
+146   M DNase-H3K4me3  0.628446839
+147   M    DNase-only  1.192766449
+148   M     Low-DNase 24.830062845
+149   M          pELS  0.076952674
+150   M           PLS  0.384763371
+151   M        5' UTR  0.833653969
+152   M        3' UTR  4.386302424
+153   M          Exon 11.594202899
+154   M        Intron 35.051943055
+155   M         other 19.250993972
+156   N     CTCF-only  1.115331771
+157   N          dELS  0.032328457
+158   N DNase-H3K4me3  0.250545543
+159   N    DNase-only  1.026428514
+160   N     Low-DNase 26.565909642
+161   N          pELS  0.008082114
+162   N           PLS  0.193970743
+163   N        5' UTR  0.759718742
+164   N        3' UTR  4.525983997
+165   N          Exon 12.179746222
+166   N        Intron 36.765537865
+167   N         other 16.576416391
+168   O     CTCF-only  2.035575002
+169   O          dELS  0.190240654
+170   O DNase-H3K4me3  0.418529440
+171   O    DNase-only  1.769238086
+172   O     Low-DNase 26.452962998
+173   O          pELS  0.085608294
+174   O           PLS  0.351945211
+175   O        5' UTR  0.665842290
+176   O        3' UTR  4.546751641
+177   O          Exon 10.929325597
+178   O        Intron 36.478645487
+179   O         other 16.075335299
 NULL
-
-[[11]]
+ [1] "#8dd3c7" "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462" "#b3de69"
+ [8] "#fccde5" "#d9d9d9" "#bc80bd" "#ccebc5" "#ffed6f"
+ [1] "#8dd3c7" "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462" "#b3de69"
+ [8] "#fccde5" "#d9d9d9" "#bc80bd" "#ccebc5" "#ffed6f"
+ [1] "#8dd3c7" "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462" "#b3de69"
+ [8] "#fccde5" "#d9d9d9" "#bc80bd" "#ccebc5" "#ffed6f"
+    .id       Feature   Frequency
+1     A     CTCF-only  0.03427005
+2     A          dELS  8.08773132
+3     A DNase-H3K4me3  0.23989034
+4     A          pELS 37.52570254
+5     A           PLS 44.03701165
+6     A        5' UTR  0.10281014
+7     A        3' UTR  1.16518163
+8     A          Exon  2.84441398
+9     A        Intron  5.20904729
+10    A         other  0.75394106
+11    B     CTCF-only  0.09789525
+12    B          dELS  6.26529613
+13    B DNase-H3K4me3  0.04894763
+14    B          pELS 49.04552129
+15    B           PLS 27.80225159
+16    B        5' UTR  0.58737151
+17    B        3' UTR  2.10474792
+18    B          Exon  3.67107195
+19    B        Intron  8.85952031
+20    B         other  1.51737641
+21    C     CTCF-only  0.03431709
+22    C          dELS  6.14275909
+23    C DNase-H3K4me3  0.17158545
+24    C          pELS 53.60329444
+25    C           PLS 28.96362388
+26    C        5' UTR  0.20590254
+27    C        3' UTR  0.75497598
+28    C          Exon  2.43651338
+29    C        Intron  6.38297872
+30    C         other  1.30404942
+31    D     CTCF-only  0.02119992
+32    D          dELS  5.73457706
+33    D DNase-H3K4me3  0.15899936
+34    D          pELS 62.20055120
+35    D           PLS 18.08352767
+36    D        5' UTR  0.21199915
+37    D        3' UTR  0.85859657
+38    D          Exon  2.21539114
+39    D        Intron  8.58596566
+40    D         other  1.92919228
+41    E     CTCF-only  0.06823610
+42    E          dELS  7.60832480
+43    E DNase-H3K4me3  0.06823610
+44    E          pELS 47.38996929
+45    E           PLS 17.26373251
+46    E        5' UTR  0.54588878
+47    E        3' UTR  1.97884681
+48    E          Exon  3.27533265
+49    E        Intron 18.49198226
+50    E         other  3.30945070
+51    F     CTCF-only  0.03049710
+52    F          dELS  5.21500457
+53    F DNase-H3K4me3  0.03049710
+54    F          pELS 55.47422995
+55    F           PLS 30.92406221
+56    F        5' UTR  0.24397682
+57    F        3' UTR  0.51845075
+58    F          Exon  1.67734065
+59    F        Intron  5.03202196
+60    F         other  0.85391888
+61    G     CTCF-only  0.39789683
+62    G          dELS 18.58746625
+63    G DNase-H3K4me3  0.41210743
+64    G          pELS 12.46269717
+65    G           PLS  2.61475060
+66    G        5' UTR  0.92368907
+67    G        3' UTR 12.09322154
+68    G          Exon  8.79636209
+69    G        Intron 28.94699446
+70    G         other 14.76481455
+71    H     CTCF-only  0.20336476
+72    H          dELS 22.95248660
+73    H DNase-H3K4me3  0.24958403
+74    H          pELS 11.39767055
+75    H           PLS  2.46810871
+76    H        5' UTR  0.69328896
+77    H        3' UTR  3.73451655
+78    H          Exon  6.56313551
+79    H        Intron 45.97892402
+80    H         other  5.75892032
+81    I     CTCF-only  0.05714286
+82    I          dELS 18.57142857
+83    I          pELS 29.88571429
+84    I           PLS  9.42857143
+85    I        5' UTR  0.57142857
+86    I        3' UTR  2.62857143
+87    I          Exon  5.65714286
+88    I        Intron 31.02857143
+89    I         other  2.17142857
+90    J     CTCF-only  0.69463740
+91    J          dELS 13.39260906
+92    J DNase-H3K4me3  1.27813281
+93    J          pELS  6.97415949
+94    J           PLS  4.75131981
+95    J        5' UTR  0.22228397
+96    J        3' UTR  2.88969158
+97    J          Exon  8.22450681
+98    J        Intron 36.14893026
+99    J         other 25.42372881
+100   K     CTCF-only  0.81781986
+101   K          dELS  8.59786936
+102   K DNase-H3K4me3  2.89465189
+103   K          pELS  4.39040138
+104   K           PLS  1.90465942
+105   K        5' UTR  0.55956096
+106   K        3' UTR  3.33584418
+107   K          Exon  7.45722587
+108   K        Intron 32.47605725
+109   K         other 37.56590982
+110   L     CTCF-only  1.00155581
+111   L          dELS 16.53053287
+112   L DNase-H3K4me3  1.18630883
+113   L          pELS  7.09840529
+114   L           PLS  3.13107740
+115   L        5' UTR  0.61260210
+116   L        3' UTR  3.82147025
+117   L          Exon 10.16141579
+118   L        Intron 37.18397511
+119   L         other 19.27265655
+120   M     CTCF-only  0.96190843
+121   M          dELS 16.60895216
+122   M DNase-H3K4me3  1.62883160
+123   M          pELS  7.00269334
+124   M           PLS  2.68051815
+125   M        5' UTR  0.83365397
+126   M        3' UTR  4.38630242
+127   M          Exon 11.59420290
+128   M        Intron 35.05194306
+129   M         other 19.25099397
+130   N     CTCF-only  0.64656914
+131   N          dELS 16.69764810
+132   N DNase-H3K4me3  1.22039926
+133   N          pELS  8.01745737
+134   N           PLS  2.61052291
+135   N        5' UTR  0.75971874
+136   N        3' UTR  4.52598400
+137   N          Exon 12.17974622
+138   N        Intron 36.76553786
+139   N         other 16.57641639
+140   O     CTCF-only  0.77998668
+141   O          dELS 17.75896509
+142   O DNase-H3K4me3  1.34119661
+143   O          pELS  8.29449253
+144   O           PLS  3.12945877
+145   O        5' UTR  0.66584229
+146   O        3' UTR  4.54675164
+147   O          Exon 10.92932560
+148   O        Intron 36.47864549
+149   O         other 16.07533530
+[1]  9 10
+ [1] "#8dd3c7" "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462" "#b3de69"
+ [8] "#fccde5" "#ccebc5" "#ffed6f"
+ [1] "#8dd3c7" "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462" "#b3de69"
+ [8] "#fccde5" "#ccebc5" "#ffed6f"
+ [1] "#8dd3c7" "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462" "#b3de69"
+ [8] "#fccde5" "#ccebc5" "#ffed6f"
+    .id        Feature    Frequency
+1     A            DNA  3.461274846
+2     A           LINE  9.424263194
+3     A Low_complexity  8.087731323
+4     A            LTR  3.735435230
+5     A     Retroposon  0.068540096
+6     A           rRNA  0.068540096
+7     A      Satellite  0.548320768
+8     A  Simple_repeat 28.958190541
+9     A           SINE 17.888965045
+10    A          snRNA  0.068540096
+11    A           tRNA  0.308430432
+12    A          other 27.381768334
+13    B            DNA  3.475281449
+14    B           LINE  8.957415565
+15    B Low_complexity  4.845814978
+16    B            LTR  3.426333823
+17    B     Retroposon  0.097895252
+18    B      Satellite  0.440528634
+19    B          scRNA  0.048947626
+20    B  Simple_repeat 20.558002937
+21    B           SINE 28.046989721
+22    B           tRNA  0.440528634
+23    B          other 29.662261380
+24    C            DNA  2.505147563
+25    C           LINE  8.201784489
+26    C Low_complexity  6.348661633
+27    C            LTR  4.221002059
+28    C             RC  0.068634180
+29    C     Retroposon  0.034317090
+30    C      Satellite  0.240219629
+31    C          scRNA  0.102951270
+32    C  Simple_repeat 23.266986960
+33    C           SINE 25.326012354
+34    C           tRNA  0.446122169
+35    C          other 29.238160604
+36    D            DNA  3.731185075
+37    D           LINE 10.981556074
+38    D Low_complexity  5.077379690
+39    D            LTR  3.921984312
+40    D     Retroposon  0.031799873
+41    D           rRNA  0.021199915
+42    D      Satellite  0.233199067
+43    D          scRNA  0.031799873
+44    D  Simple_repeat 20.235319059
+45    D           SINE 26.457494170
+46    D          snRNA  0.042399830
+47    D           tRNA  0.582997668
+48    D        Unknown  0.021199915
+49    D          other 28.630485478
+50    E            DNA  4.708290686
+51    E           LINE 12.487205732
+52    E Low_complexity  4.264756056
+53    E            LTR  5.254179461
+54    E             RC  0.034118048
+55    E     Retroposon  0.102354145
+56    E           rRNA  0.034118048
+57    E      Satellite  0.307062436
+58    E          scRNA  0.034118048
+59    E  Simple_repeat 14.909587172
+60    E           SINE 32.582736267
+61    E          snRNA  0.204708291
+62    E           tRNA  0.136472194
+63    E        Unknown  0.136472194
+64    E          other 24.803821221
+65    F            DNA  3.812137847
+66    F           LINE 10.308020738
+67    F Low_complexity  5.641964013
+68    F            LTR  4.452577005
+69    F     Retroposon  0.060994206
+70    F           rRNA  0.030497103
+71    F      Satellite  0.335468131
+72    F          scRNA  0.030497103
+73    F  Simple_repeat 22.323879231
+74    F           SINE 22.201890820
+75    F          snRNA  0.030497103
+76    F         srpRNA  0.030497103
+77    F           tRNA  0.762427569
+78    F          other 29.978652028
+79    G            DNA  4.376865141
+80    G           LINE 12.917436408
+81    G Low_complexity  2.202643172
+82    G            LTR  7.531618587
+83    G     Retroposon  0.284212022
+84    G           rRNA  0.028421202
+85    G      Satellite  0.227369618
+86    G          scRNA  0.028421202
+87    G  Simple_repeat  8.867415092
+88    G           SINE 41.040216001
+89    G          snRNA  0.085263607
+90    G         srpRNA  0.042631803
+91    G           tRNA  0.028421202
+92    G        Unknown  0.042631803
+93    G          other 22.296433139
+94    H            DNA  6.969865040
+95    H           LINE 17.868367536
+96    H Low_complexity  2.163061564
+97    H            LTR 12.386762803
+98    H             RC  0.027731559
+99    H     Retroposon  0.120170087
+100   H           rRNA  0.018487706
+101   H      Satellite  0.221852468
+102   H          scRNA  0.036975411
+103   H  Simple_repeat  9.123682751
+104   H           SINE 33.730819005
+105   H          snRNA  0.046219264
+106   H         srpRNA  0.018487706
+107   H           tRNA  0.036975411
+108   H        Unknown  0.064706970
+109   H          other 17.165834720
+110   I            DNA  5.428571429
+111   I           LINE 14.685714286
+112   I Low_complexity  3.600000000
+113   I            LTR  9.657142857
+114   I     Retroposon  0.114285714
+115   I            RNA  0.114285714
+116   I      Satellite  0.514285714
+117   I          scRNA  0.114285714
+118   I  Simple_repeat 12.685714286
+119   I           SINE 32.228571429
+120   I          snRNA  0.057142857
+121   I           tRNA  0.228571429
+122   I        Unknown  0.057142857
+123   I          other 20.514285714
+124   J            DNA  4.612392331
+125   J           LINE 20.061128091
+126   J Low_complexity  1.361489303
+127   J            LTR 26.785218116
+128   J     Retroposon  0.944706863
+129   J      Satellite  2.000555710
+130   J  Simple_repeat  7.585440400
+131   J           SINE 23.645457071
+132   J           tRNA  0.027785496
+133   J        Unknown  0.055570992
+134   J          other 12.920255627
+135   K            DNA  2.808565587
+136   K           LINE 16.076616808
+137   K Low_complexity  1.022274831
+138   K            LTR 29.258581728
+139   K     Retroposon  2.033788873
+140   K            RNA  0.021521575
+141   K           rRNA  0.182933391
+142   K      Satellite  6.596362854
+143   K  Simple_repeat  9.587861831
+144   K           SINE 18.314860648
+145   K          snRNA  0.010760788
+146   K         srpRNA  0.043043151
+147   K           tRNA  0.032282363
+148   K        Unknown  0.010760788
+149   K          other 13.999784784
+150   L            DNA  6.291326332
+151   L           LINE 16.783352781
+152   L Low_complexity  2.479579930
+153   L            LTR 11.153247764
+154   L             RC  0.009723843
+155   L     Retroposon  0.126409957
+156   L           rRNA  0.038895371
+157   L      Satellite  0.427849086
+158   L          scRNA  0.029171529
+159   L  Simple_repeat 10.239206534
+160   L           SINE 32.652664333
+161   L          snRNA  0.019447686
+162   L         srpRNA  0.009723843
+163   L           tRNA  0.058343057
+164   L        Unknown  0.126409957
+165   L          other 19.554647997
+166   M            DNA  6.669231756
+167   M           LINE 16.275490573
+168   M Low_complexity  2.205976658
+169   M            LTR 11.337693985
+170   M             RC  0.038476337
+171   M     Retroposon  0.089778120
+172   M           rRNA  0.025650891
+173   M      Satellite  0.230858022
+174   M  Simple_repeat 10.401436450
+175   M           SINE 29.729383096
+176   M          snRNA  0.012825446
+177   M         srpRNA  0.012825446
+178   M           tRNA  0.012825446
+179   M        Unknown  0.064127228
+180   M          other 22.893420546
+181   N            DNA  6.489937768
+182   N           LINE 15.259031763
+183   N Low_complexity  2.788329427
+184   N            LTR  8.082114281
+185   N             RC  0.016164229
+186   N     Retroposon  0.016164229
+187   N            RNA  0.008082114
+188   N           rRNA  0.016164229
+189   N      Satellite  0.145478057
+190   N  Simple_repeat 11.007839651
+191   N           SINE 29.928069183
+192   N          snRNA  0.024246343
+193   N           tRNA  0.008082114
+194   N        Unknown  0.113149600
+195   N          other 26.097147014
+196   O            DNA  6.354037858
+197   O           LINE 16.284600019
+198   O Low_complexity  2.882145915
+199   O            LTR  8.893750595
+200   O            RNA  0.019024065
+201   O           rRNA  0.038048131
+202   O      Satellite  0.275848949
+203   O          scRNA  0.019024065
+204   O  Simple_repeat 10.910301531
+205   O           SINE 32.807000856
+206   O          snRNA  0.019024065
+207   O         srpRNA  0.028536098
+208   O        Unknown  0.085608294
+209   O          other 21.383049558
 NULL
-
-[[12]]
+ [1] "#a6cee3" "#1f78b4" "#b2df8a" "#33a02c" "#fb9a99" "#e31a1c" "#fdbf6f"
+ [8] "#ff7f00" "#cab2d6" "#6a3d9a" "#ffff99" "#b15928" "#1f78b4" "#ffff33"
+[15] "#c2a5cf" "#ff7f00" "#810f7c" "#a6cee3" "#006d2c" "#d73027" "#4d4d4d"
+[22] "#8c510a" "#78c679" "#7f0000" "#41b6c4" "#e7298a" "#54278f" "#8dd3c7"
+[29] "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462" "#b3de69" "#fccde5"
+[36] "#d9d9d9" "#bc80bd" "#ccebc5" "#ffed6f"
+ [1] "#a6cee3" "#1f78b4" "#b2df8a" "#33a02c" "#fb9a99" "#e31a1c" "#fdbf6f"
+ [8] "#ff7f00" "#cab2d6" "#6a3d9a" "#ffff99" "#b15928" "#1f78b4" "#ffff33"
+[15] "#c2a5cf" "#ff7f00" "#810f7c"
+ [1] "#a6cee3" "#1f78b4" "#b2df8a" "#33a02c" "#fb9a99" "#e31a1c" "#fdbf6f"
+ [8] "#ff7f00" "#cab2d6" "#6a3d9a" "#ffff99" "#b15928" "#1f78b4" "#ffff33"
+[15] "#c2a5cf" "#ff7f00" "#810f7c"
+    .id Feature   Frequency
+1     A    Acet  0.68540096
+2     A BivProm  7.29952022
+3     A   DNase  1.54215216
+4     A    EnhA  5.48320768
+5     A   EnhWk  0.68540096
+6     A GapArtf  0.20562029
+7     A     HET  0.61686086
+8     A   PromF 45.68197395
+9     A   Quies  0.51405072
+10    A  ReprPC  0.85675120
+11    A     TSS 34.44139822
+12    A      Tx  0.23989034
+13    A   TxEnh  0.95956134
+14    A    TxEx  0.20562029
+15    A    TxWk  0.10281014
+16    A   other  0.47978067
+17    B    Acet  0.48947626
+18    B BivProm  3.96475771
+19    B   DNase  1.71316691
+20    B    EnhA  6.75477239
+21    B   EnhWk  0.97895252
+22    B     HET  0.78316202
+23    B   PromF 51.83553598
+24    B   Quies  0.39158101
+25    B  ReprPC  1.37053353
+26    B     TSS 21.97748409
+27    B      Tx  1.22369065
+28    B   TxEnh  3.81791483
+29    B    TxEx  3.86686246
+30    B    TxWk  0.58737151
+31    B   other  0.24473813
+32    C    Acet  0.41180508
+33    C BivProm  4.25531915
+34    C   DNase  0.48043926
+35    C    EnhA  8.33905285
+36    C   EnhWk  0.78929307
+37    C GapArtf  0.10295127
+38    C     HET  0.44612217
+39    C   PromF 58.47632121
+40    C   Quies  0.34317090
+41    C  ReprPC  0.72065889
+42    C     TSS 22.95813315
+43    C      Tx  0.58339053
+44    C   TxEnh  1.40700069
+45    C    TxEx  0.41180508
+46    C    TxWk  0.06863418
+47    C     znf  0.06863418
+48    C   other  0.13726836
+49    D    Acet  0.58299767
+50    D BivProm  6.12677549
+51    D   DNase  0.33919864
+52    D    EnhA  7.33517066
+53    D   EnhWk  1.02819589
+54    D GapArtf  0.27559890
+55    D     HET  0.46639813
+56    D   PromF 61.74475302
+57    D   Quies  0.68899724
+58    D  ReprPC  1.19779521
+59    D     TSS 15.44413822
+60    D      Tx  0.79499682
+61    D   TxEnh  2.14119144
+62    D    TxEx  1.25079500
+63    D    TxWk  0.21199915
+64    D     znf  0.02119992
+65    D   other  0.34979860
+66    E    Acet  1.80825657
+67    E BivProm  2.25179120
+68    E   DNase  0.44353463
+69    E    EnhA 13.74957352
+70    E   EnhWk  2.14943705
+71    E GapArtf  0.20470829
+72    E     HET  0.81883316
+73    E   PromF 48.78880928
+74    E   Quies  1.43295803
+75    E  ReprPC  1.39883999
+76    E     TSS 12.69191402
+77    E      Tx  3.51415899
+78    E   TxEnh  6.41419311
+79    E    TxEx  2.96827021
+80    E    TxWk  0.88706926
+81    E     znf  0.03411805
+82    E   other  0.44353463
+83    F    Acet  0.51845075
+84    F BivProm  3.59865813
+85    F   DNase  0.42695944
+86    F    EnhA  5.36749009
+87    F   EnhWk  0.51845075
+88    F GapArtf  0.27447392
+89    F     HET  1.00640439
+90    F   PromF 62.12259835
+91    F   Quies  0.42695944
+92    F  ReprPC  0.76242757
+93    F     TSS 22.53735895
+94    F      Tx  0.39646234
+95    F   TxEnh  1.00640439
+96    F    TxEx  0.42695944
+97    F    TxWk  0.09149131
+98    F     znf  0.15248551
+99    F   other  0.36596523
+100   G    Acet  4.33423334
+101   G BivProm  3.12633224
+102   G   DNase  1.22211170
+103   G    EnhA 13.67059827
+104   G   EnhWk  5.11581640
+105   G GapArtf  0.18473781
+106   G     HET  2.11737957
+107   G   PromF  6.66477192
+108   G   Quies  4.64686656
+109   G  ReprPC  7.07687935
+110   G     TSS  0.98053148
+111   G      Tx 10.30268580
+112   G   TxEnh 19.24115390
+113   G    TxEx 15.68850362
+114   G    TxWk  4.74634077
+115   G     znf  0.66789825
+116   G   other  0.21315902
+117   H    Acet  8.59678314
+118   H BivProm  3.87317434
+119   H   DNase  0.67480126
+120   H    EnhA 37.83508967
+121   H   EnhWk  7.74634868
+122   H GapArtf  0.07395082
+123   H     HET  0.92438528
+124   H   PromF  9.65982622
+125   H   Quies  1.97818451
+126   H  ReprPC  7.53374006
+127   H     TSS  0.77648364
+128   H      Tx  4.88075430
+129   H   TxEnh 11.61027916
+130   H    TxEx  2.10759845
+131   H    TxWk  1.20170087
+132   H     znf  0.17563320
+133   H   other  0.35126641
+134   I    Acet  4.17142857
+135   I BivProm  4.80000000
+136   I   DNase  0.74285714
+137   I    EnhA 31.25714286
+138   I   EnhWk  2.45714286
+139   I GapArtf  0.11428571
+140   I     HET  0.68571429
+141   I   PromF 31.54285714
+142   I   Quies  0.80000000
+143   I  ReprPC  1.31428571
+144   I     TSS  7.42857143
+145   I      Tx  2.40000000
+146   I   TxEnh  8.51428571
+147   I    TxEx  2.28571429
+148   I    TxWk  0.62857143
+149   I     znf  0.05714286
+150   I   other  0.80000000
+151   J    Acet  8.78021673
+152   J BivProm  3.58432898
+153   J   DNase  0.75020839
+154   J    EnhA 10.64184496
+155   J   EnhWk  4.69574882
+156   J GapArtf  1.00027785
+157   J     HET 26.53514865
+158   J   PromF  5.05696027
+159   J   Quies  9.33592665
+160   J  ReprPC 12.36454571
+161   J     TSS  2.77854960
+162   J      Tx  2.25062517
+163   J   TxEnh  1.97277021
+164   J    TxEx  1.44484579
+165   J    TxWk  3.22311753
+166   J     znf  3.69547096
+167   J   other  1.88941373
+168   K    Acet  6.87614333
+169   K BivProm  3.02378134
+170   K   DNase  0.38738836
+171   K    EnhA  4.78855052
+172   K   EnhWk  2.56106747
+173   K GapArtf  5.33735069
+174   K     HET 38.36220811
+175   K   PromF  1.37738082
+176   K   Quies  8.38265361
+177   K  ReprPC  7.75852792
+178   K     TSS  1.11912192
+179   K      Tx  1.24825137
+180   K   TxEnh  1.24825137
+181   K    TxEx  0.94694932
+182   K    TxWk  1.87237706
+183   K     znf  8.02754762
+184   K   other  6.68244916
+185   L    Acet  7.23453909
+186   L BivProm  7.74017892
+187   L   DNase  0.68066900
+188   L    EnhA 14.43990665
+189   L   EnhWk  7.90548425
+190   L GapArtf  0.14585764
+191   L     HET  5.17308440
+192   L   PromF  3.14080124
+193   L   Quies  4.31738623
+194   L  ReprPC 38.07856865
+195   L     TSS  1.44885259
+196   L      Tx  1.94476857
+197   L   TxEnh  2.39206534
+198   L    TxEx  0.34033450
+199   L    TxWk  4.57020615
+200   L     znf  0.05834306
+201   L   other  0.38895371
+202   M    Acet  6.87443889
+203   M BivProm  7.69526741
+204   M   DNase  0.75670130
+205   M    EnhA 13.94125946
+206   M   EnhWk  7.09247146
+207   M GapArtf  0.11542901
+208   M     HET  6.11773759
+209   M   PromF  2.35988201
+210   M   Quies  3.30896499
+211   M  ReprPC 39.95126331
+212   M     TSS  1.38514813
+213   M      Tx  1.79556240
+214   M   TxEnh  2.59074003
+215   M    TxEx  0.47454149
+216   M    TxWk  4.96344748
+217   M     znf  0.10260357
+218   M   other  0.47454149
+219   N    Acet  5.39077023
+220   N BivProm 10.05415017
+221   N   DNase  0.37985937
+222   N    EnhA 12.85056171
+223   N   EnhWk  6.74856542
+224   N GapArtf  0.08082114
+225   N     HET  3.76626525
+226   N   PromF  2.18217086
+227   N   Quies  2.03669280
+228   N  ReprPC 44.78299523
+229   N     TSS  0.84862200
+230   N      Tx  1.66491554
+231   N   TxEnh  3.12777823
+232   N    TxEx  0.54150166
+233   N    TxWk  4.74420108
+234   N     znf  0.02424634
+235   N   other  0.77588297
+236   O    Acet  6.49671835
+237   O BivProm 10.52030819
+238   O   DNase  0.60877009
+239   O    EnhA 15.31437268
+240   O   EnhWk  7.60962618
+241   O GapArtf  0.08560829
+242   O     HET  2.83458575
+243   O   PromF  3.07238657
+244   O   Quies  3.00580234
+245   O  ReprPC 39.51298392
+246   O     TSS  1.11290783
+247   O      Tx  1.84533435
+248   O   TxEnh  2.56824883
+249   O    TxEx  0.47560164
+250   O    TxWk  4.46114335
+251   O     znf  0.02853610
+252   O   other  0.44706554
 NULL
-
-[[13]]
+ [1] "#1f78b4" "#ffff33" "#c2a5cf" "#ff7f00" "#810f7c" "#a6cee3" "#006d2c"
+ [8] "#d73027" "#4d4d4d" "#8c510a" "#78c679" "#7f0000" "#41b6c4" "#e7298a"
+[15] "#54278f" "#8dd3c7" "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462"
+[22] "#b3de69" "#fccde5" "#d9d9d9" "#bc80bd" "#ccebc5" "#ffed6f" "#a6cee3"
+[29] "#1f78b4" "#b2df8a" "#33a02c" "#fb9a99" "#e31a1c" "#fdbf6f" "#ff7f00"
+[36] "#cab2d6" "#6a3d9a" "#ffff99" "#b15928"
+ [1] "#1f78b4" "#ffff33" "#c2a5cf" "#ff7f00" "#810f7c" "#a6cee3" "#006d2c"
+ [8] "#d73027" "#4d4d4d" "#8c510a" "#78c679" "#7f0000" "#41b6c4" "#e7298a"
+[15] "#54278f" "#8dd3c7" "#ffffb3"
+ [1] "#1f78b4" "#ffff33" "#c2a5cf" "#ff7f00" "#810f7c" "#a6cee3" "#006d2c"
+ [8] "#d73027" "#4d4d4d" "#8c510a" "#78c679" "#7f0000" "#41b6c4" "#e7298a"
+[15] "#54278f" "#8dd3c7" "#ffffb3"
+    .id  Feature   Frequency
+1     A    Acet1  0.20562029
+2     A    Acet2  0.06854010
+3     A    Acet3  0.13708019
+4     A    Acet4  0.03427005
+5     A    Acet5  0.03427005
+6     A    Acet6  0.03427005
+7     A    Acet7  0.10281014
+8     A    Acet8  0.06854010
+9     A BivProm1  4.28375600
+10    A BivProm2  1.57642221
+11    A BivProm3  0.82248115
+12    A BivProm4  0.61686086
+13    A   DNase1  1.54215216
+14    A    EnhA1  0.44551062
+15    A   EnhA10  0.65113091
+16    A   EnhA11  0.13708019
+17    A   EnhA12  0.10281014
+18    A   EnhA14  0.06854010
+19    A   EnhA15  0.03427005
+20    A   EnhA16  1.26799178
+21    A   EnhA17  0.17135024
+22    A   EnhA18  0.30843043
+23    A   EnhA19  0.17135024
+24    A    EnhA2  0.10281014
+25    A    EnhA3  0.27416038
+26    A    EnhA4  0.06854010
+27    A    EnhA6  0.06854010
+28    A    EnhA7  0.30843043
+29    A    EnhA8  0.75394106
+30    A    EnhA9  0.54832077
+31    A   EnhWk2  0.30843043
+32    A   EnhWk3  0.06854010
+33    A   EnhWk4  0.03427005
+34    A   EnhWk5  0.03427005
+35    A   EnhWk6  0.06854010
+36    A   EnhWk7  0.03427005
+37    A   EnhWk8  0.13708019
+38    A GapArtf1  0.20562029
+39    A     HET1  0.06854010
+40    A     HET2  0.03427005
+41    A     HET3  0.03427005
+42    A     HET5  0.06854010
+43    A     HET6  0.13708019
+44    A     HET7  0.06854010
+45    A     HET8  0.20562029
+46    A   PromF1  1.71350240
+47    A   PromF2  3.80397533
+48    A   PromF3 12.44002742
+49    A   PromF4 18.81425634
+50    A   PromF5  6.54557916
+51    A   PromF6  1.50788211
+52    A   PromF7  0.85675120
+53    A   Quies3  0.30843043
+54    A   Quies4  0.17135024
+55    A   Quies5  0.03427005
+56    A  ReprPC1  0.30843043
+57    A  ReprPC2  0.06854010
+58    A  ReprPC3  0.06854010
+59    A  ReprPC4  0.03427005
+60    A  ReprPC5  0.10281014
+61    A  ReprPC6  0.06854010
+62    A  ReprPC7  0.10281014
+63    A  ReprPC8  0.03427005
+64    A  ReprPC9  0.06854010
+65    A     TSS1 21.00753941
+66    A     TSS2 13.43385881
+67    A      Tx1  0.03427005
+68    A      Tx3  0.06854010
+69    A      Tx4  0.03427005
+70    A      Tx5  0.03427005
+71    A      Tx7  0.03427005
+72    A      Tx8  0.03427005
+73    A   TxEnh2  0.20562029
+74    A   TxEnh3  0.17135024
+75    A   TxEnh4  0.20562029
+76    A   TxEnh5  0.10281014
+77    A   TxEnh6  0.06854010
+78    A   TxEnh7  0.17135024
+79    A   TxEnh8  0.03427005
+80    A    TxEx1  0.03427005
+81    A    TxEx2  0.03427005
+82    A    TxEx3  0.03427005
+83    A    TxEx4  0.10281014
+84    A    TxWk1  0.03427005
+85    A    TxWk2  0.06854010
+86    A    other  0.47978067
+87    B    Acet1  0.09789525
+88    B    Acet2  0.04894763
+89    B    Acet3  0.19579050
+90    B    Acet7  0.04894763
+91    B    Acet8  0.09789525
+92    B BivProm1  2.25159080
+93    B BivProm2  0.58737151
+94    B BivProm3  0.53842389
+95    B BivProm4  0.58737151
+96    B   DNase1  1.71316691
+97    B    EnhA1  0.48947626
+98    B   EnhA10  1.17474302
+99    B   EnhA11  0.24473813
+100   B   EnhA12  0.04894763
+101   B   EnhA14  0.24473813
+102   B   EnhA15  0.29368576
+103   B   EnhA16  1.61527166
+104   B   EnhA17  0.14684288
+105   B   EnhA18  0.14684288
+106   B   EnhA19  0.39158101
+107   B   EnhA20  0.04894763
+108   B    EnhA3  0.19579050
+109   B    EnhA4  0.04894763
+110   B    EnhA7  0.24473813
+111   B    EnhA8  0.63631914
+112   B    EnhA9  0.78316202
+113   B   EnhWk2  0.24473813
+114   B   EnhWk3  0.09789525
+115   B   EnhWk4  0.14684288
+116   B   EnhWk5  0.19579050
+117   B   EnhWk6  0.29368576
+118   B     HET1  0.09789525
+119   B     HET2  0.04894763
+120   B     HET5  0.04894763
+121   B     HET6  0.39158101
+122   B     HET7  0.19579050
+123   B   PromF1  1.56632403
+124   B   PromF2  5.43318649
+125   B   PromF3 13.95007342
+126   B   PromF4 15.36955458
+127   B   PromF5  3.03475281
+128   B   PromF6  8.71267744
+129   B   PromF7  3.76896721
+130   B   Quies3  0.29368576
+131   B   Quies4  0.04894763
+132   B   Quies5  0.04894763
+133   B  ReprPC1  0.29368576
+134   B  ReprPC2  0.19579050
+135   B  ReprPC4  0.09789525
+136   B  ReprPC5  0.19579050
+137   B  ReprPC6  0.14684288
+138   B  ReprPC7  0.19579050
+139   B  ReprPC8  0.14684288
+140   B  ReprPC9  0.09789525
+141   B     TSS1 13.50954479
+142   B     TSS2  8.46793930
+143   B      Tx1  0.44052863
+144   B      Tx2  0.14684288
+145   B      Tx3  0.14684288
+146   B      Tx4  0.09789525
+147   B      Tx5  0.24473813
+148   B      Tx7  0.04894763
+149   B      Tx8  0.09789525
+150   B   TxEnh1  0.19579050
+151   B   TxEnh2  1.22369065
+152   B   TxEnh3  0.63631914
+153   B   TxEnh4  0.48947626
+154   B   TxEnh5  0.39158101
+155   B   TxEnh6  0.24473813
+156   B   TxEnh7  0.53842389
+157   B   TxEnh8  0.09789525
+158   B    TxEx1  0.39158101
+159   B    TxEx2  0.09789525
+160   B    TxEx3  0.24473813
+161   B    TxEx4  3.13264807
+162   B    TxWk1  0.29368576
+163   B    TxWk2  0.29368576
+164   B    other  0.24473813
+165   C    Acet1  0.10295127
+166   C    Acet2  0.03431709
+167   C    Acet4  0.13726836
+168   C    Acet5  0.03431709
+169   C    Acet7  0.06863418
+170   C    Acet8  0.03431709
+171   C BivProm1  2.19629375
+172   C BivProm2  0.82361016
+173   C BivProm3  0.51475635
+174   C BivProm4  0.72065889
+175   C   DNase1  0.48043926
+176   C    EnhA1  0.34317090
+177   C   EnhA10  1.26973233
+178   C   EnhA11  0.24021963
+179   C   EnhA12  0.06863418
+180   C   EnhA13  0.03431709
+181   C   EnhA14  0.20590254
+182   C   EnhA16  2.09334248
+183   C   EnhA17  0.20590254
+184   C   EnhA18  0.30885381
+185   C   EnhA19  0.24021963
+186   C    EnhA2  0.20590254
+187   C   EnhA20  0.03431709
+188   C    EnhA3  0.24021963
+189   C    EnhA4  0.03431709
+190   C    EnhA5  0.03431709
+191   C    EnhA6  0.03431709
+192   C    EnhA7  0.58339053
+193   C    EnhA8  1.20109815
+194   C    EnhA9  0.96087852
+195   C   EnhWk1  0.06863418
+196   C   EnhWk2  0.17158545
+197   C   EnhWk3  0.06863418
+198   C   EnhWk4  0.06863418
+199   C   EnhWk5  0.10295127
+200   C   EnhWk6  0.17158545
+201   C   EnhWk7  0.06863418
+202   C   EnhWk8  0.06863418
+203   C GapArtf1  0.06863418
+204   C GapArtf3  0.03431709
+205   C     HET1  0.13726836
+206   C     HET5  0.03431709
+207   C     HET6  0.03431709
+208   C     HET7  0.13726836
+209   C     HET8  0.03431709
+210   C     HET9  0.06863418
+211   C   PromF1  1.20109815
+212   C   PromF2  4.15236788
+213   C   PromF3 16.09471517
+214   C   PromF4 20.45298559
+215   C   PromF5  5.01029513
+216   C   PromF6  7.92724777
+217   C   PromF7  3.63761153
+218   C   Quies2  0.03431709
+219   C   Quies3  0.27453672
+220   C   Quies5  0.03431709
+221   C  ReprPC1  0.20590254
+222   C  ReprPC2  0.10295127
+223   C  ReprPC3  0.03431709
+224   C  ReprPC4  0.03431709
+225   C  ReprPC5  0.06863418
+226   C  ReprPC6  0.03431709
+227   C  ReprPC7  0.10295127
+228   C  ReprPC8  0.03431709
+229   C  ReprPC9  0.10295127
+230   C     TSS1 15.71722718
+231   C     TSS2  7.24090597
+232   C      Tx1  0.30885381
+233   C      Tx2  0.13726836
+234   C      Tx3  0.06863418
+235   C      Tx4  0.03431709
+236   C      Tx5  0.03431709
+237   C   TxEnh1  0.17158545
+238   C   TxEnh2  0.82361016
+239   C   TxEnh3  0.06863418
+240   C   TxEnh4  0.03431709
+241   C   TxEnh6  0.06863418
+242   C   TxEnh7  0.24021963
+243   C    TxEx1  0.03431709
+244   C    TxEx2  0.06863418
+245   C    TxEx3  0.03431709
+246   C    TxEx4  0.27453672
+247   C    TxWk1  0.03431709
+248   C    TxWk2  0.03431709
+249   C     znf1  0.06863418
+250   C    other  0.13726836
+251   D    Acet1  0.07419970
+252   D    Acet2  0.08479966
+253   D    Acet3  0.08479966
+254   D    Acet4  0.14839941
+255   D    Acet6  0.03179987
+256   D    Acet7  0.10599958
+257   D    Acet8  0.05299979
+258   D BivProm1  3.03158787
+259   D BivProm2  1.10239559
+260   D BivProm3  0.80559678
+261   D BivProm4  1.18719525
+262   D   DNase1  0.33919864
+263   D    EnhA1  0.25439898
+264   D   EnhA10  1.44159423
+265   D   EnhA11  0.21199915
+266   D   EnhA12  0.09539962
+267   D   EnhA13  0.02119992
+268   D   EnhA14  0.24379902
+269   D   EnhA15  0.07419970
+270   D   EnhA16  2.15179139
+271   D   EnhA17  0.09539962
+272   D   EnhA18  0.31799873
+273   D   EnhA19  0.24379902
+274   D    EnhA2  0.09539962
+275   D   EnhA20  0.01059996
+276   D    EnhA3  0.18019928
+277   D    EnhA4  0.02119992
+278   D    EnhA5  0.03179987
+279   D    EnhA6  0.04239983
+280   D    EnhA7  0.31799873
+281   D    EnhA8  0.82679669
+282   D    EnhA9  0.65719737
+283   D   EnhWk1  0.04239983
+284   D   EnhWk2  0.19079924
+285   D   EnhWk3  0.08479966
+286   D   EnhWk4  0.04239983
+287   D   EnhWk5  0.14839941
+288   D   EnhWk6  0.36039856
+289   D   EnhWk7  0.08479966
+290   D   EnhWk8  0.07419970
+291   D GapArtf1  0.24379902
+292   D GapArtf2  0.02119992
+293   D GapArtf3  0.01059996
+294   D     HET1  0.14839941
+295   D     HET2  0.03179987
+296   D     HET5  0.04239983
+297   D     HET6  0.08479966
+298   D     HET7  0.08479966
+299   D     HET8  0.04239983
+300   D     HET9  0.03179987
+301   D   PromF1  0.96459614
+302   D   PromF2  3.89018444
+303   D   PromF3 16.64193343
+304   D   PromF4 15.60313759
+305   D   PromF5  6.51897392
+306   D   PromF6 12.32775069
+307   D   PromF7  5.79817681
+308   D   Quies1  0.08479966
+309   D   Quies2  0.03179987
+310   D   Quies3  0.47699809
+311   D   Quies4  0.07419970
+312   D   Quies5  0.02119992
+313   D  ReprPC1  0.44519822
+314   D  ReprPC2  0.28619886
+315   D  ReprPC3  0.07419970
+316   D  ReprPC4  0.07419970
+317   D  ReprPC5  0.05299979
+318   D  ReprPC6  0.04239983
+319   D  ReprPC7  0.11659953
+320   D  ReprPC8  0.02119992
+321   D  ReprPC9  0.08479966
+322   D     TSS1 10.40915836
+323   D     TSS2  5.03497986
+324   D      Tx1  0.28619886
+325   D      Tx2  0.18019928
+326   D      Tx3  0.13779945
+327   D      Tx4  0.05299979
+328   D      Tx5  0.02119992
+329   D      Tx7  0.02119992
+330   D      Tx8  0.09539962
+331   D   TxEnh1  0.16959932
+332   D   TxEnh2  1.32499470
+333   D   TxEnh3  0.11659953
+334   D   TxEnh4  0.07419970
+335   D   TxEnh5  0.12719949
+336   D   TxEnh6  0.10599958
+337   D   TxEnh7  0.20139919
+338   D   TxEnh8  0.02119992
+339   D    TxEx1  0.09539962
+340   D    TxEx2  0.08479966
+341   D    TxEx3  0.07419970
+342   D    TxEx4  0.99639601
+343   D    TxWk1  0.06359975
+344   D    TxWk2  0.14839941
+345   D     znf1  0.02119992
+346   D    other  0.34979860
+347   E    Acet1  0.20470829
+348   E    Acet2  0.34118048
+349   E    Acet3  0.10235415
+350   E    Acet4  0.30706244
+351   E    Acet5  0.06823610
+352   E    Acet6  0.23882634
+353   E    Acet7  0.34118048
+354   E    Acet8  0.20470829
+355   E BivProm1  0.92118731
+356   E BivProm2  0.27294439
+357   E BivProm3  0.51177073
+358   E BivProm4  0.54588878
+359   E   DNase1  0.44353463
+360   E    EnhA1  0.68236097
+361   E   EnhA10  1.77413852
+362   E   EnhA11  0.27294439
+363   E   EnhA12  0.20470829
+364   E   EnhA13  0.20470829
+365   E   EnhA14  0.51177073
+366   E   EnhA15  0.20470829
+367   E   EnhA16  3.27533265
+368   E   EnhA17  0.40941658
+369   E   EnhA18  0.17059024
+370   E   EnhA19  0.58000682
+371   E    EnhA2  0.23882634
+372   E    EnhA3  0.88706926
+373   E    EnhA4  0.37529853
+374   E    EnhA5  0.20470829
+375   E    EnhA6  0.06823610
+376   E    EnhA7  0.64824292
+377   E    EnhA8  1.33060389
+378   E    EnhA9  1.70590242
+379   E   EnhWk1  0.10235415
+380   E   EnhWk2  0.51177073
+381   E   EnhWk3  0.06823610
+382   E   EnhWk4  0.06823610
+383   E   EnhWk5  0.37529853
+384   E   EnhWk6  0.68236097
+385   E   EnhWk7  0.20470829
+386   E   EnhWk8  0.13647219
+387   E GapArtf1  0.20470829
+388   E     HET1  0.17059024
+389   E     HET2  0.06823610
+390   E     HET3  0.03411805
+391   E     HET4  0.03411805
+392   E     HET6  0.13647219
+393   E     HET7  0.10235415
+394   E     HET8  0.23882634
+395   E     HET9  0.03411805
+396   E   PromF1  1.33060389
+397   E   PromF2  4.64005459
+398   E   PromF3 13.88604572
+399   E   PromF4 15.86489253
+400   E   PromF5  1.77413852
+401   E   PromF6  7.33538042
+402   E   PromF7  3.95769362
+403   E   Quies1  0.03411805
+404   E   Quies2  0.10235415
+405   E   Quies3  1.19413170
+406   E   Quies4  0.10235415
+407   E  ReprPC1  0.17059024
+408   E  ReprPC2  0.10235415
+409   E  ReprPC3  0.13647219
+410   E  ReprPC4  0.27294439
+411   E  ReprPC5  0.30706244
+412   E  ReprPC6  0.20470829
+413   E  ReprPC7  0.06823610
+414   E  ReprPC9  0.13647219
+415   E     TSS1  9.34834527
+416   E     TSS2  3.34356875
+417   E      Tx1  0.85295121
+418   E      Tx2  0.61412487
+419   E      Tx3  0.61412487
+420   E      Tx4  0.40941658
+421   E      Tx5  0.44353463
+422   E      Tx6  0.03411805
+423   E      Tx7  0.17059024
+424   E      Tx8  0.37529853
+425   E   TxEnh1  0.54588878
+426   E   TxEnh2  2.01296486
+427   E   TxEnh3  0.54588878
+428   E   TxEnh4  0.78471511
+429   E   TxEnh5  0.54588878
+430   E   TxEnh6  0.58000682
+431   E   TxEnh7  0.92118731
+432   E   TxEnh8  0.47765268
+433   E    TxEx1  0.61412487
+434   E    TxEx2  0.23882634
+435   E    TxEx3  0.40941658
+436   E    TxEx4  1.70590242
+437   E    TxWk1  0.47765268
+438   E    TxWk2  0.40941658
+439   E     znf2  0.03411805
+440   E    other  0.44353463
+441   F    Acet1  0.24397682
+442   F    Acet2  0.12198841
+443   F    Acet6  0.06099421
+444   F    Acet7  0.06099421
+445   F    Acet8  0.03049710
+446   F BivProm1  1.79932906
+447   F BivProm2  0.51845075
+448   F BivProm3  0.48795364
+449   F BivProm4  0.79292467
+450   F   DNase1  0.42695944
+451   F    EnhA1  0.15248551
+452   F   EnhA10  0.70143336
+453   F   EnhA11  0.12198841
+454   F   EnhA12  0.09149131
+455   F   EnhA14  0.09149131
+456   F   EnhA16  2.04330589
+457   F   EnhA17  0.09149131
+458   F   EnhA18  0.27447392
+459   F   EnhA19  0.18298262
+460   F    EnhA3  0.18298262
+461   F    EnhA5  0.09149131
+462   F    EnhA6  0.03049710
+463   F    EnhA7  0.21347972
+464   F    EnhA8  0.48795364
+465   F    EnhA9  0.60994206
+466   F   EnhWk1  0.03049710
+467   F   EnhWk2  0.06099421
+468   F   EnhWk3  0.03049710
+469   F   EnhWk6  0.06099421
+470   F   EnhWk7  0.06099421
+471   F   EnhWk8  0.27447392
+472   F GapArtf1  0.27447392
+473   F     HET1  0.30497103
+474   F     HET2  0.03049710
+475   F     HET5  0.12198841
+476   F     HET6  0.21347972
+477   F     HET7  0.09149131
+478   F     HET8  0.21347972
+479   F     HET9  0.03049710
+480   F   PromF1  0.91491308
+481   F   PromF2  3.01921317
+482   F   PromF3 17.74931382
+483   F   PromF4 24.67215615
+484   F   PromF5  4.72705093
+485   F   PromF6  8.05123513
+486   F   PromF7  2.98871607
+487   F   Quies1  0.03049710
+488   F   Quies2  0.12198841
+489   F   Quies3  0.18298262
+490   F   Quies4  0.09149131
+491   F  ReprPC1  0.12198841
+492   F  ReprPC2  0.15248551
+493   F  ReprPC3  0.09149131
+494   F  ReprPC4  0.03049710
+495   F  ReprPC5  0.06099421
+496   F  ReprPC6  0.06099421
+497   F  ReprPC7  0.12198841
+498   F  ReprPC8  0.03049710
+499   F  ReprPC9  0.09149131
+500   F     TSS1 16.16346447
+ [ reached 'max' / getOption("max.print") -- omitted 897 rows ]
 NULL
-
-[[14]]
+  [1] "#FF0000" "#FF0D00" "#FF1900" "#FF2600" "#FF3300" "#FF4000" "#FF4D00"
+  [8] "#FF5900" "#FF6600" "#FF7300" "#FF8000" "#FF8C00" "#FF9900" "#FFA600"
+ [15] "#FFB300" "#FFBF00" "#FFCC00" "#FFD900" "#FFE500" "#FFF200" "#FFFF00"
+ [22] "#F2FF00" "#E6FF00" "#D9FF00" "#CCFF00" "#BFFF00" "#B3FF00" "#A6FF00"
+ [29] "#99FF00" "#8CFF00" "#80FF00" "#73FF00" "#66FF00" "#59FF00" "#4DFF00"
+ [36] "#40FF00" "#33FF00" "#26FF00" "#1AFF00" "#0DFF00" "#00FF00" "#00FF0D"
+ [43] "#00FF19" "#00FF26" "#00FF33" "#00FF40" "#00FF4C" "#00FF59" "#00FF66"
+ [50] "#00FF73" "#00FF80" "#00FF8C" "#00FF99" "#00FFA6" "#00FFB3" "#00FFBF"
+ [57] "#00FFCC" "#00FFD9" "#00FFE5" "#00FFF2" "#00FFFF" "#00F2FF" "#00E6FF"
+ [64] "#00D9FF" "#00CCFF" "#00BFFF" "#00B2FF" "#00A6FF" "#0099FF" "#008CFF"
+ [71] "#0080FF" "#0073FF" "#0066FF" "#0059FF" "#004CFF" "#0040FF" "#0033FF"
+ [78] "#0026FF" "#0019FF" "#000DFF" "#0000FF" "#0D00FF" "#1900FF" "#2600FF"
+ [85] "#3300FF" "#4000FF" "#4C00FF" "#5900FF" "#6600FF" "#7300FF" "#8000FF"
+ [92] "#8C00FF" "#9900FF" "#A600FF" "#B300FF" "#BF00FF" "#CC00FF" "#D900FF"
+ [99] "#E600FF" "#F200FF" "#FF00FF" "#FF00F2" "#FF00E6" "#FF00D9" "#FF00CC"
+[106] "#FF00BF" "#FF00B3" "#FF00A6" "#FF0099" "#FF008C" "#FF0080" "#FF0073"
+[113] "#FF0066" "#FF0059" "#FF004D" "#FF0040" "#FF0033" "#FF0026" "#FF001A"
+[120] "#FF000D"
+  [1] "#FF0000" "#FF0D00" "#FF1900" "#FF2600" "#FF3300" "#FF4000" "#FF4D00"
+  [8] "#FF5900" "#FF6600" "#FF7300" "#FF8000" "#FF8C00" "#FF9900" "#FFA600"
+ [15] "#FFB300" "#FFBF00" "#FFCC00" "#FFD900" "#FFE500" "#FFF200" "#FFFF00"
+ [22] "#F2FF00" "#E6FF00" "#D9FF00" "#CCFF00" "#BFFF00" "#B3FF00" "#A6FF00"
+ [29] "#99FF00" "#8CFF00" "#80FF00" "#73FF00" "#66FF00" "#59FF00" "#4DFF00"
+ [36] "#40FF00" "#33FF00" "#26FF00" "#1AFF00" "#0DFF00" "#00FF00" "#00FF0D"
+ [43] "#00FF19" "#00FF26" "#00FF33" "#00FF40" "#00FF4C" "#00FF59" "#00FF66"
+ [50] "#00FF73" "#00FF80" "#00FF8C" "#00FF99" "#00FFA6" "#00FFB3" "#00FFBF"
+ [57] "#00FFCC" "#00FFD9" "#00FFE5" "#00FFF2" "#00FFFF" "#00F2FF" "#00E6FF"
+ [64] "#00D9FF" "#00CCFF" "#00BFFF" "#00B2FF" "#00A6FF" "#0099FF" "#008CFF"
+ [71] "#0080FF" "#0073FF" "#0066FF" "#0059FF" "#004CFF" "#0040FF" "#0033FF"
+ [78] "#0026FF" "#0019FF" "#000DFF" "#0000FF" "#0D00FF" "#1900FF" "#2600FF"
+ [85] "#3300FF" "#4000FF" "#4C00FF" "#5900FF" "#6600FF" "#7300FF" "#8000FF"
+ [92] "#8C00FF" "#9900FF" "#A600FF" "#B300FF" "#BF00FF" "#CC00FF" "#D900FF"
+ [99] "#E600FF" "#F200FF" "#FF00FF"
+  [1] "#FF0000" "#FF0D00" "#FF1900" "#FF2600" "#FF3300" "#FF4000" "#FF4D00"
+  [8] "#FF5900" "#FF6600" "#FF7300" "#FF8000" "#FF8C00" "#FF9900" "#FFA600"
+ [15] "#FFB300" "#FFBF00" "#FFCC00" "#FFD900" "#FFE500" "#FFF200" "#FFFF00"
+ [22] "#F2FF00" "#E6FF00" "#D9FF00" "#CCFF00" "#BFFF00" "#B3FF00" "#A6FF00"
+ [29] "#99FF00" "#8CFF00" "#80FF00" "#73FF00" "#66FF00" "#59FF00" "#4DFF00"
+ [36] "#40FF00" "#33FF00" "#26FF00" "#1AFF00" "#0DFF00" "#00FF00" "#00FF0D"
+ [43] "#00FF19" "#00FF26" "#00FF33" "#00FF40" "#00FF4C" "#00FF59" "#00FF66"
+ [50] "#00FF73" "#00FF80" "#00FF8C" "#00FF99" "#00FFA6" "#00FFB3" "#00FFBF"
+ [57] "#00FFCC" "#00FFD9" "#00FFE5" "#00FFF2" "#00FFFF" "#00F2FF" "#00E6FF"
+ [64] "#00D9FF" "#00CCFF" "#00BFFF" "#00B2FF" "#00A6FF" "#0099FF" "#008CFF"
+ [71] "#0080FF" "#0073FF" "#0066FF" "#0059FF" "#004CFF" "#0040FF" "#0033FF"
+ [78] "#0026FF" "#0019FF" "#000DFF" "#0000FF" "#0D00FF" "#1900FF" "#2600FF"
+ [85] "#3300FF" "#4000FF" "#4C00FF" "#5900FF" "#6600FF" "#7300FF" "#8000FF"
+ [92] "#8C00FF" "#9900FF" "#A600FF" "#B300FF" "#BF00FF" "#CC00FF" "#D900FF"
+ [99] "#E600FF" "#F200FF" "#FF00FF"
+    .id                  Feature   Frequency
+1     A             acetylations  0.68540096
+2     A       bivalent promoters  7.29952022
+3     A                    DNase  1.54215216
+4     A                enhancers  5.48320768
+5     A                     exon  0.20562029
+6     A                      HET  0.61686086
+7     A                   others  0.20562029
+8     A       polycomb repressed  0.85675120
+9     A                promoters 45.68197395
+10    A                quescient  0.51405072
+11    A transcribed and enhancer  0.95956134
+12    A            transcription  0.23989034
+13    A                      TSS 34.44139822
+14    A           weak enhancers  0.68540096
+15    A       weak transcription  0.10281014
+16    A                    other  0.47978067
+17    B             acetylations  0.48947626
+18    B       bivalent promoters  3.96475771
+19    B                    DNase  1.71316691
+20    B                enhancers  6.75477239
+21    B                     exon  3.86686246
+22    B                      HET  0.78316202
+23    B       polycomb repressed  1.37053353
+24    B                promoters 51.83553598
+25    B                quescient  0.39158101
+26    B transcribed and enhancer  3.81791483
+27    B            transcription  1.22369065
+28    B                      TSS 21.97748409
+29    B           weak enhancers  0.97895252
+30    B       weak transcription  0.58737151
+31    B                    other  0.24473813
+32    C             acetylations  0.41180508
+33    C       bivalent promoters  4.25531915
+34    C                    DNase  0.48043926
+35    C                enhancers  8.33905285
+36    C                     exon  0.41180508
+37    C                      HET  0.44612217
+38    C                   others  0.10295127
+39    C       polycomb repressed  0.72065889
+40    C                promoters 58.47632121
+41    C                quescient  0.34317090
+42    C transcribed and enhancer  1.40700069
+43    C            transcription  0.58339053
+44    C                      TSS 22.95813315
+45    C           weak enhancers  0.78929307
+46    C       weak transcription  0.06863418
+47    C                      znf  0.06863418
+48    C                    other  0.13726836
+49    D             acetylations  0.58299767
+50    D       bivalent promoters  6.12677549
+51    D                    DNase  0.33919864
+52    D                enhancers  7.33517066
+53    D                     exon  1.25079500
+54    D                      HET  0.46639813
+55    D                   others  0.27559890
+56    D       polycomb repressed  1.19779521
+57    D                promoters 61.74475302
+58    D                quescient  0.68899724
+59    D transcribed and enhancer  2.14119144
+60    D            transcription  0.79499682
+61    D                      TSS 15.44413822
+62    D           weak enhancers  1.02819589
+63    D       weak transcription  0.21199915
+64    D                      znf  0.02119992
+65    D                    other  0.34979860
+66    E             acetylations  1.80825657
+67    E       bivalent promoters  2.25179120
+68    E                    DNase  0.44353463
+69    E                enhancers 13.74957352
+70    E                     exon  2.96827021
+71    E                      HET  0.81883316
+72    E                   others  0.20470829
+73    E       polycomb repressed  1.39883999
+74    E                promoters 48.78880928
+75    E                quescient  1.43295803
+76    E transcribed and enhancer  6.41419311
+77    E            transcription  3.51415899
+78    E                      TSS 12.69191402
+79    E           weak enhancers  2.14943705
+80    E       weak transcription  0.88706926
+81    E                      znf  0.03411805
+82    E                    other  0.44353463
+83    F             acetylations  0.51845075
+84    F       bivalent promoters  3.59865813
+85    F                    DNase  0.42695944
+86    F                enhancers  5.36749009
+87    F                     exon  0.42695944
+88    F                      HET  1.00640439
+89    F                   others  0.27447392
+90    F       polycomb repressed  0.76242757
+91    F                promoters 62.12259835
+92    F                quescient  0.42695944
+93    F transcribed and enhancer  1.00640439
+94    F            transcription  0.39646234
+95    F                      TSS 22.53735895
+96    F           weak enhancers  0.51845075
+97    F       weak transcription  0.09149131
+98    F                      znf  0.15248551
+99    F                    other  0.36596523
+100   G             acetylations  4.33423334
+101   G       bivalent promoters  3.12633224
+102   G                    DNase  1.22211170
+103   G                enhancers 13.67059827
+104   G                     exon 15.68850362
+105   G                      HET  2.11737957
+106   G                   others  0.18473781
+107   G       polycomb repressed  7.07687935
+108   G                promoters  6.66477192
+109   G                quescient  4.64686656
+110   G transcribed and enhancer 19.24115390
+111   G            transcription 10.30268580
+112   G                      TSS  0.98053148
+113   G           weak enhancers  5.11581640
+114   G       weak transcription  4.74634077
+115   G                      znf  0.66789825
+116   G                    other  0.21315902
+117   H             acetylations  8.59678314
+118   H       bivalent promoters  3.87317434
+119   H                    DNase  0.67480126
+120   H                enhancers 37.83508967
+121   H                     exon  2.10759845
+122   H                      HET  0.92438528
+123   H                   others  0.07395082
+124   H       polycomb repressed  7.53374006
+125   H                promoters  9.65982622
+126   H                quescient  1.97818451
+127   H transcribed and enhancer 11.61027916
+128   H            transcription  4.88075430
+129   H                      TSS  0.77648364
+130   H           weak enhancers  7.74634868
+131   H       weak transcription  1.20170087
+132   H                      znf  0.17563320
+133   H                    other  0.35126641
+134   I             acetylations  4.17142857
+135   I       bivalent promoters  4.80000000
+136   I                    DNase  0.74285714
+137   I                enhancers 31.25714286
+138   I                     exon  2.28571429
+139   I                      HET  0.68571429
+140   I                   others  0.11428571
+141   I       polycomb repressed  1.31428571
+142   I                promoters 31.54285714
+143   I                quescient  0.80000000
+144   I transcribed and enhancer  8.51428571
+145   I            transcription  2.40000000
+146   I                      TSS  7.42857143
+147   I           weak enhancers  2.45714286
+148   I       weak transcription  0.62857143
+149   I                      znf  0.05714286
+150   I                    other  0.80000000
+151   J             acetylations  8.78021673
+152   J       bivalent promoters  3.58432898
+153   J                    DNase  0.75020839
+154   J                enhancers 10.64184496
+155   J                     exon  1.44484579
+156   J                      HET 26.53514865
+157   J                   others  1.00027785
+158   J       polycomb repressed 12.36454571
+159   J                promoters  5.05696027
+160   J                quescient  9.33592665
+161   J transcribed and enhancer  1.97277021
+162   J            transcription  2.25062517
+163   J                      TSS  2.77854960
+164   J           weak enhancers  4.69574882
+165   J       weak transcription  3.22311753
+166   J                      znf  3.69547096
+167   J                    other  1.88941373
+168   K             acetylations  6.87614333
+169   K       bivalent promoters  3.02378134
+170   K                    DNase  0.38738836
+171   K                enhancers  4.78855052
+172   K                     exon  0.94694932
+173   K                      HET 38.36220811
+174   K                   others  5.33735069
+175   K       polycomb repressed  7.75852792
+176   K                promoters  1.37738082
+177   K                quescient  8.38265361
+178   K transcribed and enhancer  1.24825137
+179   K            transcription  1.24825137
+180   K                      TSS  1.11912192
+181   K           weak enhancers  2.56106747
+182   K       weak transcription  1.87237706
+183   K                      znf  8.02754762
+184   K                    other  6.68244916
+185   L             acetylations  7.23453909
+186   L       bivalent promoters  7.74017892
+187   L                    DNase  0.68066900
+188   L                enhancers 14.43990665
+189   L                     exon  0.34033450
+190   L                      HET  5.17308440
+191   L                   others  0.14585764
+192   L       polycomb repressed 38.07856865
+193   L                promoters  3.14080124
+194   L                quescient  4.31738623
+195   L transcribed and enhancer  2.39206534
+196   L            transcription  1.94476857
+197   L                      TSS  1.44885259
+198   L           weak enhancers  7.90548425
+199   L       weak transcription  4.57020615
+200   L                      znf  0.05834306
+201   L                    other  0.38895371
+202   M             acetylations  6.87443889
+203   M       bivalent promoters  7.69526741
+204   M                    DNase  0.75670130
+205   M                enhancers 13.94125946
+206   M                     exon  0.47454149
+207   M                      HET  6.11773759
+208   M                   others  0.11542901
+209   M       polycomb repressed 39.95126331
+210   M                promoters  2.35988201
+211   M                quescient  3.30896499
+212   M transcribed and enhancer  2.59074003
+213   M            transcription  1.79556240
+214   M                      TSS  1.38514813
+215   M           weak enhancers  7.09247146
+216   M       weak transcription  4.96344748
+217   M                      znf  0.10260357
+218   M                    other  0.47454149
+219   N             acetylations  5.39077023
+220   N       bivalent promoters 10.05415017
+221   N                    DNase  0.37985937
+222   N                enhancers 12.85056171
+223   N                     exon  0.54150166
+224   N                      HET  3.76626525
+225   N                   others  0.08082114
+226   N       polycomb repressed 44.78299523
+227   N                promoters  2.18217086
+228   N                quescient  2.03669280
+229   N transcribed and enhancer  3.12777823
+230   N            transcription  1.66491554
+231   N                      TSS  0.84862200
+232   N           weak enhancers  6.74856542
+233   N       weak transcription  4.74420108
+234   N                      znf  0.02424634
+235   N                    other  0.77588297
+236   O             acetylations  6.49671835
+237   O       bivalent promoters 10.52030819
+238   O                    DNase  0.60877009
+239   O                enhancers 15.31437268
+240   O                     exon  0.47560164
+241   O                      HET  2.83458575
+242   O                   others  0.08560829
+243   O       polycomb repressed 39.51298392
+244   O                promoters  3.07238657
+245   O                quescient  3.00580234
+246   O transcribed and enhancer  2.56824883
+247   O            transcription  1.84533435
+248   O                      TSS  1.11290783
+249   O           weak enhancers  7.60962618
+250   O       weak transcription  4.46114335
+251   O                      znf  0.02853610
+252   O                    other  0.44706554
 NULL
-
-[[15]]
-NULL
-
-[[16]]
-NULL
-
-cluster_idx: 1; 27479
-cluster_idx: 2; 898
-cluster_idx: 3; 456
-cluster_idx: 4; 32045
-cluster_idx: 5; 6660
-cluster_idx: 6; 37140
-cluster_idx: 7; 15088
-cluster_idx: 8; 11265
-cluster_idx: 10; 120829
-cluster_idx: 11; 889
-cluster_idx: 12; 22839
-cluster_idx: 13; 32860
-cluster_idx: 14; 16667
-cluster_idx: 15; 27567
+ [1] "#a6cee3" "#1f78b4" "#b2df8a" "#33a02c" "#fb9a99" "#e31a1c" "#fdbf6f"
+ [8] "#ff7f00" "#cab2d6" "#6a3d9a" "#ffff99" "#b15928" "#1f78b4" "#ffff33"
+[15] "#c2a5cf" "#ff7f00" "#810f7c" "#a6cee3" "#006d2c" "#d73027" "#4d4d4d"
+[22] "#8c510a" "#78c679" "#7f0000" "#41b6c4" "#e7298a" "#54278f" "#8dd3c7"
+[29] "#ffffb3" "#bebada" "#fb8072" "#80b1d3" "#fdb462" "#b3de69" "#fccde5"
+[36] "#d9d9d9" "#bc80bd" "#ccebc5" "#ffed6f"
+ [1] "#a6cee3" "#1f78b4" "#b2df8a" "#33a02c" "#fb9a99" "#e31a1c" "#fdbf6f"
+ [8] "#ff7f00" "#cab2d6" "#6a3d9a" "#ffff99" "#b15928" "#1f78b4" "#ffff33"
+[15] "#c2a5cf" "#ff7f00" "#810f7c"
+ [1] "#a6cee3" "#1f78b4" "#b2df8a" "#33a02c" "#fb9a99" "#e31a1c" "#fdbf6f"
+ [8] "#ff7f00" "#cab2d6" "#6a3d9a" "#ffff99" "#b15928" "#1f78b4" "#ffff33"
+[15] "#c2a5cf" "#ff7f00" "#810f7c"
+num of bin: 2918
+num of overlapped genes: 2242
+num of bin: 2043
+num of overlapped genes: 1569
+num of bin: 2914
+num of overlapped genes: 2285
+num of bin: 9434
+num of overlapped genes: 6205
+num of bin: 2931
+num of overlapped genes: 1952
+num of bin: 3279
+num of overlapped genes: 2670
+num of bin: 7037
+num of overlapped genes: 1926
+num of bin: 10818
+num of overlapped genes: 2420
+num of bin: 1750
+num of overlapped genes: 897
+num of bin: 3599
+num of overlapped genes: 811
+num of bin: 9293
+num of overlapped genes: 1215
+num of bin: 10284
+num of overlapped genes: 1702
+num of bin: 7797
+num of overlapped genes: 1220
+num of bin: 12373
+num of overlapped genes: 1426
+num of bin: 10513
+num of overlapped genes: 1598
+[1] FALSE
+num of bin: 2918
+num of overlapped genes: 2242
+num of bin: 2043
+num of overlapped genes: 1569
+num of bin: 2914
+num of overlapped genes: 2285
+num of bin: 9434
+num of overlapped genes: 6205
+num of bin: 2931
+num of overlapped genes: 1952
+num of bin: 3279
+num of overlapped genes: 2670
+num of bin: 7037
+num of overlapped genes: 1926
+num of bin: 10818
+num of overlapped genes: 2420
+num of bin: 1750
+num of overlapped genes: 897
+num of bin: 3599
+num of overlapped genes: 811
+num of bin: 9293
+num of overlapped genes: 1215
+num of bin: 10284
+num of overlapped genes: 1702
+num of bin: 7797
+num of overlapped genes: 1220
+num of bin: 12373
+num of overlapped genes: 1426
+num of bin: 10513
+num of overlapped genes: 1598
+null device 
+          1 
+null device 
+          1 
+pdf 
+  2 
+pdf 
+  2 
+pdf 
+  2 

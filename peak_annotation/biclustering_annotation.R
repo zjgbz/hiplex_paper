@@ -721,7 +721,7 @@ write.csv(
 
 # Create Overlap Heatmap =======================================================
 overlap_cnts <- result_df[, c("cluster_id1", "cluster_id2", "overlap")]
-df_wide <- dcast(overlap_cnts, cluster_id1 ~ cluster_id2, value.var = "overlap")
+df_wide <- reshape2::dcast(overlap_cnts, cluster_id1 ~ cluster_id2, value.var = "overlap")
 rownames(df_wide) <- df_wide$cluster_id1
 df_wide$cluster_id1 <- NULL
 

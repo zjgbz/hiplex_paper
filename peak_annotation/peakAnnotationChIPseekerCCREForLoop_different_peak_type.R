@@ -34,9 +34,11 @@ if (!merged) {
 
 
 peak_suffix <- ".stringent.bed"
-if (grepl("relaxed", peakType)) {
+if (grepl("relaxed", peakDir)) {
   peak_suffix <- ".relaxed.bed"
 }
+print(peak_suffix)
+
 for (scen in scens) {
   peakAnnos <- list()
   print(scen)
@@ -44,9 +46,12 @@ for (scen in scens) {
     # peakFiles <- c(paste0(peakDir, scen, "/", tag, ".stringent.bed"), paste0(peakDir, scen, "/", tag, ".relaxed.bed"))
     peakFile <- paste0(peakDir, scen, "/", tag, peak_suffix)
     print(tag)
+    print(peakFile)
     if (file.exists(peakFile)) {
       if (length(peakFile) > 0 && file.size(peakFile) > 0) {
+        print(paste("Reading peak file:", peakFile, "size:", file.size(peakFile)))
         peak <- ChIPseeker::readPeakFile(peakFile, as = "GRanges")   # Use ChIPseeker to read peak files
+        print(paste("Peak count:", length(peak)))
         peakAnno <- annotatePeakByOverlappingChIPSeekerCCRE(peak, annotation, categories)
         peakAnnos[[tag]] <- peakAnno
       } else {
@@ -62,7 +67,7 @@ for (scen in scens) {
   }
   # dir.create(paste0("/dcl02/hongkai/data/kyu/multitag_scripts/data_peakAnnotate/ChIPSeeker_CCRE/", peakType, "/", scen), recursive = TRUE)
   # RDSFile <- paste0("/dcl02/hongkai/data/kyu/multitag_scripts/data_peakAnnotate/ChIPSeeker_CCRE/", peakType, "/", scen, "/annotate.rds")
-  dir.create(outDir, recursive = TRUE)
+  dir.create(outDir, recursive = TRUE, showWarnings = FALSE)
   RDSFile <- glue("{outDir}/annotate.rds")
   saveRDS(peakAnnos, RDSFile)
 }

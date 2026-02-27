@@ -44,7 +44,7 @@ for (scen in scens) {
       } 
     } 
   }
-  dir.create(outDir, recursive = TRUE)
+  dir.create(outDir, recursive = TRUE, showWarnings = FALSE)
   RDSFile <- glue("{outDir}/annotate.rds")
   # dir.create(paste0("/dcs05/hongkai/data/next_cutntag/bulk/peak_annotation/test/", peakType, "/", scen), recursive = TRUE)
   # RDSFile <- paste0("/dcs05/hongkai/data/next_cutntag/bulk/peak_annotation/test/", peakType, "/", scen, "/annotate.rds")

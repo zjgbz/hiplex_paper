@@ -12,4 +12,8 @@
 
 cd /dcs07/hongkai/data/mjiang/hiplex/paper_materials/hiplex_paper
 
+module load conda_R
 bash /dcs07/hongkai/data/mjiang/hiplex/paper_materials/hiplex_paper/peak_annotation/run_peak_annotation.sh
+# Rscript ../hiplex_paper/peak_annotation/peakAnnotationChIPseekerCCREForLoop_different_peak_type.R \
+#     ../data/peak/data_peak_auc_0.05_extend_window_narrow_wide_adaptive_binomial_0.05/ \
+#     ../results/Figrue2C_3B/Chipseeker_test 2>&1 | tail -50

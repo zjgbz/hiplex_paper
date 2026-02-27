@@ -450,6 +450,11 @@ annotatePeakByOverlappingClosestFeatureV2 <- function(
   return(x)
 }
 
+safe_get_freq <- function(annoStat, feature) {
+    val <- annoStat$Frequency[annoStat$Feature == feature]
+    if (length(val) == 0) 0 else val
+}
+
 #' Annotate peaks using combined ChIPSeeker and CCRE annotations
 #'
 #' @param peak GRanges object containing peak regions
@@ -475,10 +480,12 @@ annotatePeakByOverlappingChIPSeekerCCRE <- function(
   condensedFeatures <- c("5' UTR", "3' UTR", "Exon", "Intron")
   
   chipSeekerAnnoFreqCondensed <- c()
-  chipSeekerAnnoFreqCondensed["5' UTR"] <- 
-    chipSeekerAnno@annoStat$Frequency[chipSeekerAnno@annoStat$Feature == "5' UTR"]
-  chipSeekerAnnoFreqCondensed["3' UTR"] <- 
-    chipSeekerAnno@annoStat$Frequency[chipSeekerAnno@annoStat$Feature == "3' UTR"]
+
+  chipSeekerAnnoFreqCondensed["5' UTR"] <- safe_get_freq(chipSeekerAnno@annoStat, "5' UTR")
+  chipSeekerAnnoFreqCondensed["3' UTR"] <- safe_get_freq(chipSeekerAnno@annoStat, "3' UTR")
+
+  # chipSeekerAnnoFreqCondensed["5' UTR"] <- chipSeekerAnno@annoStat$Frequency[chipSeekerAnno@annoStat$Feature == "5' UTR"]
+  # chipSeekerAnnoFreqCondensed["3' UTR"] <- chipSeekerAnno@annoStat$Frequency[chipSeekerAnno@annoStat$Feature == "3' UTR"]
   
   # Combine exon and intron annotations
   exonFreq <- sum(
